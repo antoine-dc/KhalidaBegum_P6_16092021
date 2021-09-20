@@ -16,3 +16,38 @@ of likes from all media for each photographer
 -send email to photographer
 
 */
+
+const fileUpload = async () => {
+  const data = await fetch("./FishEyeData.json").then((response) =>
+    response.json()
+  );
+  console.log(data);
+  const displayPhotographer = (photographer) => {
+    document.getElementById("main").textContent += photographer.name;
+  };
+  data.photographer.forEach(displayPhotographer);
+};
+
+/*
+
+const createProfile = (photographer) => {
+  const div = document.createElement("div");
+  div.innerHTML = (
+    <article>
+      <img
+        src="FishEye_Photos/Sample Photos/Photographers ID Photos/${photographer.portrait}"
+        alt="Portrait de ${photographer.name}"
+      />
+      <h2>${photographer.name}</h2>
+    </article>
+  );
+
+  const container = document.createDocumentFragment();
+  Array.from(div.children).forEach((c) => {
+    container.appendChild(c);
+  });
+  return container;
+};*/
+
+fileUpload();
+console.log(any);

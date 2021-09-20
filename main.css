@@ -132,7 +132,7 @@ h1 {
 .profile-tags a {
   text-decoration: none;
 }
-.sample-pictures {
+.portfolio {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -152,6 +152,7 @@ h1 {
   .contenu {
     display: block;
     text-align: center;
+    background-color: #d3573c;
   }
   .main-header {
     justify-content: space-between;
@@ -182,5 +183,22 @@ h1 {
     width: 300px;
     margin: 20px;
     padding: 15px;
+  }
+  .portfolio {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .portfolio-pics {
+    margin: 20px;
+  }
+  .portfolio span {
+    display: flex;
+    color: green;
+  }
+  .portfolio img {
+    border-radius: 15px;
   }
 }
