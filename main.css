@@ -95,7 +95,10 @@ h1 {
 }
 
 /*photographer profile page*/
-
+.profile-header {
+  position: absolute;
+  margin: 10px;
+}
 .photographer-profile {
   display: flex;
   flex-direction: row;
@@ -111,6 +114,7 @@ h1 {
 }
 .profile-text {
   color: #d3573c;
+  margin-top: 5em;
 }
 .profile-pic img {
   border-radius: 50%;
@@ -139,6 +143,12 @@ h1 {
   justify-content: center;
   align-items: center;
   margin: 50px;
+}
+button {
+  position: static;
+  background-color: #901c1c;
+  color: #ffffff;
+  margin: 10px;
 }
 
 @media screen and (min-width: 991px) {
@@ -201,5 +211,22 @@ h1 {
   }
   .portfolio img {
     border-radius: 15px;
+  }
+  .photographer-profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .profile-header {
+    top: 0;
+    left: 0;
+    margin: 20px;
+  }
+  .profile-text {
+    margin: 0;
+  }
+  .profile-pic {
+    position: relative;
+    left: 37em;
   }
 }
