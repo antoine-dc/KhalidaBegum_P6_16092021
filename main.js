@@ -22,11 +22,29 @@ const createProfile = (photographer) => {
   const div = document.createElement("div");
   div.innerHTML = `
     <article>
-      <img
-        src="Sample Photos/Photographers ID Photos/${photographer.portrait}"
-        alt="Portrait de ${photographer.name}"
-      />
-      <h2>${photographer.name}</h2>
+      <div class="vignette">
+        <a href="photograph.html?photographerId=${photographer.id}">
+          <img
+            src="Sample Photos/Photographers ID Photos/${photographer.portrait}"
+            alt=" Photo de ${photographer.name}"
+          />
+          <h2>${photographer.name}</h2>
+        </a>
+        <div class="vignette-text">
+          <span>${photographer.city}, ${photographer.country}</span>
+          <p>${photographer.tagline}</p>
+          <span>${photographer.price}€/jour</span>
+        </div>
+
+        <ul class="tags">${photographer.tags
+          .map(
+            (tag) =>
+              `<span> <li><a href="index.html?tag=${tag}">#${tag}</a></li></span> `
+          )
+          .join("")}
+       
+        </ul>
+      </div>
     </article>
   `;
 
@@ -45,13 +63,19 @@ const displayProfile = (photographer) => {
 
 //upload json file
 
-const fileUpload = async () => {
-  const data = await fetch("./FishEyeData.json").then((response) =>
-    response.json()
-  );
-  console.log(data);
-
-  data.photographers.forEach(displayProfile);
+const fetchData = () => {
+  return fetch("./FishEyeData.json").then((response) => response.json());
 };
-
-fileUpload();
+const tag = new URLSearchParams(window.location.search).get("tag");
+fetchData()
+  .then((data) => {
+    if (tag) {
+      return data.photographers.filter((photographer) =>
+        photographer.tags.includes(tag)
+      );
+    }
+    return data.photographers;
+  })
+  .then((photographers) => {
+    photographers.forEach(displayProfile);
+  });
