@@ -16,6 +16,7 @@ of likes from all media for each photographer
 -send email to photographer
 
 */
+//import { convertStringToHTML, loadData } from "./common.js";
 
 //create profile into new div and contain each profile in fragments (container)
 const createProfile = (photographer) => {
