@@ -82,7 +82,7 @@ const getPhotographerId = () => {
   return +new URLSearchParams(location.search).get("photographerId");
 };
 
-const photographerProfile = (photographerId) => {
+const photographerProfile = () => {
   const div = document.createElement("div");
   div.innerHTML = `
         <article>
@@ -124,6 +124,12 @@ const displayPhotographerProfile = () => {
 
 const loadData = async () => {
   return await fetch("./FishEyeData.json").then((response) => response.json());
+};
+
+const getImage = (media) => {
+  return convertStringToHtml(
+    `<img src="./Sample Photos/Mimi/${getPhotographerId()}/${media.image}"/>`
+  );
 };
 
 const getPhotographerMedias = (medias) => {
