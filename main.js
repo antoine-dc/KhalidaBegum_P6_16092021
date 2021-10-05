@@ -16,12 +16,11 @@ of likes from all media for each photographer
 -send email to photographer
 
 */
-//import { convertStringToHTML, loadData } from "./common.js";
+import { convertStringToHTML, loadData } from "./common.js";
 
 //create profile into new div and contain each profile in fragments (container)
 const createProfile = (photographer) => {
-  const div = document.createElement("div");
-  div.innerHTML = `
+  return convertStringToHTML(`
     <article>
       <div class="vignette">
         <a href="photograph.html?photographerId=${photographer.id}">
@@ -47,13 +46,7 @@ const createProfile = (photographer) => {
         </ul>
       </div>
     </article>
-  `;
-
-  const container = document.createDocumentFragment();
-  Array.from(div.children).forEach((child) => {
-    container.appendChild(child);
-  });
-  return container;
+  `);
 };
 
 //display photographer profile
@@ -64,7 +57,20 @@ const displayProfile = (photographer) => {
 
 //upload json file
 
-const fetchData = () => {
+const tag = new URLSearchParams(window.location.search).get("tag");
+loadData()
+  .then((data) => {
+    if (tag) {
+      return data.photographers.filter((photographer) =>
+        photographer.tags.includes(tag)
+      );
+    }
+    return data.photographers;
+  })
+  .then((photographers) => {
+    photographers.forEach(displayProfile);
+  });
+/*const fetchData = () => {
   return fetch("./FishEyeData.json").then((response) => response.json());
 };
 const tag = new URLSearchParams(window.location.search).get("tag");
@@ -79,4 +85,5 @@ fetchData()
   })
   .then((photographers) => {
     photographers.forEach(displayProfile);
-  });
+  });*/
+

@@ -1,123 +1,104 @@
-/*
-const getPhotographerId = () => {
-  return +new URLSearchParams(location.search).get("photographerId");
-};
+import { loadData, convertStringToHTML } from "./common.js";
 
-const getImage = (media) => {
-  return convertStringToHtml(
-    `<img src="./Sample Photos/Mimi/${getPhotographerId()}/${
-      media.image
-    }"/>`
+const getPhotographerBio = (photographer) => {
+  return convertStringToHTML(`
+  <div class="profile-text">
+    <h1>${photographer.name}</h1>
+  
+    <span>${photographer.city}, ${photographer.country}</span>
+    <p>${photographer.tagline}</p>
+    <span>${photographer.price}€/jour</span>
+  </div>
+  <span class="profile-pic">
+    <img
+      height="150"
+      width="150"
+      src="Sample Photos/Photographers ID Photos/${photographer.portrait}"
+      alt="Portrait de ${photographer.name}"
+    />
+  </span>
+`);
+};
+const getTags = (photographer) => {
+  return convertStringToHTML(
+    photographer.tags
+      .map((tag) => {
+        return `<span> <li><a href="#">#${tag}</a></li></span> `;
+      })
+      .join("")
   );
 };
 
-const getPhotographerMedias = (medias) => {
-  return medias.filter((media) => {
-    return media.photographerId === getPhotographerId() && !media.video;
-  });
+const getVideo = (media) => {
+  return `  
+  <article class="portfolio-pics">
+   <div>
+     <video height="190" width="335" controls>
+       <source
+         src="Sample Photos/${media.photographerId}/${media.video}"
+         type="Video" alt="${media.title}"
+       />
+     </video>
+
+     <span class="portfolio-text">${media.title}</span>
+     <span>${media.likes} ❤</span>
+   </div>
+ </article>
+`;
 };
+const getImage = (media) => {
+  return `
+    <article class="portfolio-pics">
+      <div>
+        <img
+        height="190"
+        width="335"
+          src="Sample Photos/${media.photographerId}/${media.image}"
+          alt="${media.title}"
+        />
+        <span class="portfolio-text">${media.title}</span>
+        <span>${media.likes} ❤</span>
+      </div>
+    </article>
+  `;
+};
+
+const getMedia = (media) => {
+  if (media.video) {
+    return getVideo(media);
+  }
+  return getImage(media);
+};
+
+const getMedias = (medias) => {
+  return convertStringToHTML(medias.map((media) => getMedia(media)).join(""));
+};
+
+const urlPhotographerId = +new URLSearchParams(location.search).get(
+  "photographerId"
+);
 
 loadData().then((data) => {
-  getPhotographerMedias(data.media).forEach((image) => {
-    document.getElementById("main").appendChild(getImage(image));
+  const photographer = data.photographers.find((photographer) => {
+    return photographer.id === urlPhotographerId;
   });
+  const media = data.media.filter((media) => {
+    return media.photographerId === urlPhotographerId;
+  });
+
+  document.title = photographer.name;
+  document
+    .querySelector("#photographer_bio")
+    .appendChild(getPhotographerBio(photographer));
+
+  document
+    .querySelector("#photographer_tags")
+    .appendChild(getTags(photographer));
+
+  document.querySelector("#portfolio").appendChild(getMedias(media));
 });
 
-const convertStringToHtml=(innerHTML)=>{
-    const div =document.createElement("div");
-    div.innerHTML=innerHTML;
-
-    const container = document.createDocumentFragment();
-    Array.from(div.children).forEach((child) =>{
-        container.appendChild(child);
-    });
-    return container;
-};
-
-  const loadData = async()=>{
-     return await fetch("./data.json").then((response)=>response.json());
- };
- */
-
 /*
-const photographerProfile = () => {
-  const div = document.createElement("div");
-  div.innerHTML = `
-      <article>
-        <div class="photographer-profile">
-          
-            <img
-              src="Sample Photos/Mimi/${photographer.portrait}"
-              alt=" Photo de ${photographer.name}"
-            />
-            <h1>${photographer.name}</h1>
-         
-          <div class="profile-text">
-            <span>${photographer.city}, ${photographer.country}</span>
-            <p>${photographer.tagline}</p>
-            <span>${photographer.price}€/jour</span>
-          </div>
-  
-          <ul class="profile-tags">${photographer.tags
-            .map(
-              (tag) =>
-                `<span> <li><a href="index.html?tag=${tag}">#${tag}</a></li></span> `
-            )
-            .join("")}
-         
-          </ul>
-        </div>
-      </article>
-    `;
-
-  const container = document.createDocumentFragment();
-  Array.from(div.children).forEach((child) => {
-    container.appendChild(child);
-  });
-  return container;
-};*/
-//import { convertStringToHTML,loadData } from "./common.js";
-
-const getPhotographerId = () => {
-  return +new URLSearchParams(location.search).get("photographerId");
-};
-
-const photographerProfile = () => {
-  const div = document.createElement("div");
-  div.innerHTML = `
-        <article>
-
-        <div id="243" class="photographer-profile">
-          <div class="profile-text">
-         
-            <h1>${photographer.name}</h1>
-           
-
-            <span>${photographer.city}, ${photographer.country}</span>
-            <p>${photographer.tagline}</p>
-            <span>${photographer.price}€/jour</span>
-          </div>
-          <span class="profile-pic">
-          
-          <img
-          src="Sample Photos/Photographers ID Photos/${photographer.portrait}"
-          alt=" Photo de ${photographer.name}"
-        />
-          </span>
-        
-
-        <ul class="profile-tags">${photographer.tags
-          .map(
-            (tag) =>
-              `<span> <li><a href="index.html?tag=${tag}">#${tag}</a></li></span> `
-          )
-          .join("")}
-         
-        </ul> 
-    </article>
-    </div>`;
-};
-
 const displayPhotographerProfile = () => {
   document.getElementById("243").appendChild(photographerProfile());
 };
@@ -142,4 +123,4 @@ loadData().then((data) => {
   getPhotographerMedias(data.media).forEach((image) => {
     document.getElementById("portfolio").appendChild(getImage(image));
   });
-});
+});*/

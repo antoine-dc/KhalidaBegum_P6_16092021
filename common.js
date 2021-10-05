@@ -1,14 +1,13 @@
-/*export const convertStringToHTML=(innerHTML)=>{
-    const div = document.createElement("div");
-    div.innerHTML = innerHTML;
+export const convertStringToHTML = (innerHTML) => {
+  const div = document.createElement("div");
+  div.innerHTML = innerHTML;
 
-    const container = document.createDocumentFragment();
-    Array.from(div.children).forEach((child) =>{
-        container.appendChild(child);
-    });
-    return container;
+  const fragment = document.createDocumentFragment();
+  Array.from(div.children).forEach((child) => fragment.appendChild(child));
+
+  return fragment;
 };
 
-  export const loadData = async()=>{
-     return await fetch("./FishEyeData.json").then((response)=>response.json());
- };*/
+export const loadData = async () => {
+  return await fetch("./FishEyeData.json").then((response) => response.json());
+};
