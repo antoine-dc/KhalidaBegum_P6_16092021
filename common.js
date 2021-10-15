@@ -4,7 +4,6 @@ export const convertStringToHTML = (innerHTML) => {
 
   const fragment = document.createDocumentFragment();
   Array.from(div.children).forEach((child) => fragment.appendChild(child));
-
   return fragment;
 };
 

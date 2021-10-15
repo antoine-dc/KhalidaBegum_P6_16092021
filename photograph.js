@@ -11,8 +11,8 @@ const getPhotographerBio = (photographer) => {
   </div>
   <span class="profile-pic">
     <img
-      height="150"
-      width="150"
+    height="150"
+    width="150"
       src="Sample Photos/Photographers ID Photos/${photographer.portrait}"
       alt="Portrait de ${photographer.name}"
     />

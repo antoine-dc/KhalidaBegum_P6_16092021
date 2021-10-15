@@ -225,8 +225,4 @@ button {
   .profile-text {
     margin: 0;
   }
-  .profile-pic {
-    position: relative;
-    left: 37em;
-  }
 }
