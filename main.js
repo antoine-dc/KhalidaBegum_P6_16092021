@@ -23,6 +23,7 @@ const createProfile = (photographer) => {
   return convertStringToHTML(`
     <article>
       <div class="vignette">
+      <div class="vignette-link">
         <a href="photograph.html?photographerId=${photographer.id}">
           <img
             src="Sample Photos/Photographers ID Photos/${photographer.portrait}"
@@ -30,10 +31,11 @@ const createProfile = (photographer) => {
           />
           <h2>${photographer.name}</h2>
         </a>
+        </div>
         <div class="vignette-text">
           <span>${photographer.city}, ${photographer.country}</span>
           <p>${photographer.tagline}</p>
-          <span>${photographer.price}€/jour</span>
+          <span class="price">${photographer.price}€/jour</span>
         </div>
 
         <ul class="tags">${photographer.tags
@@ -86,4 +88,3 @@ fetchData()
   .then((photographers) => {
     photographers.forEach(displayProfile);
   });*/
-

@@ -7,16 +7,14 @@ const getPhotographerBio = (photographer) => {
   
     <span>${photographer.city}, ${photographer.country}</span>
     <p>${photographer.tagline}</p>
-    <span>${photographer.price}€/jour</span>
   </div>
   <span class="profile-pic">
     <img
-    height="150"
-    width="150"
       src="Sample Photos/Photographers ID Photos/${photographer.portrait}"
       alt="Portrait de ${photographer.name}"
     />
   </span>
+  
 `);
 };
 const getTags = (photographer) => {
@@ -33,15 +31,16 @@ const getVideo = (media) => {
   return `  
   <article class="portfolio-pics">
    <div>
-     <video height="190" width="335" controls>
+     <video controls>
        <source
          src="Sample Photos/${media.photographerId}/${media.video}"
          type="Video" alt="${media.title}"
        />
      </video>
-
-     <span class="portfolio-text">${media.title}</span>
+<div class="portfolio-text">
+     <span>${media.title}</span>
      <span>${media.likes} ❤</span>
+     </div>
    </div>
  </article>
 `;
@@ -51,13 +50,13 @@ const getImage = (media) => {
     <article class="portfolio-pics">
       <div>
         <img
-        height="190"
-        width="335"
           src="Sample Photos/${media.photographerId}/${media.image}"
           alt="${media.title}"
-        />
-        <span class="portfolio-text">${media.title}</span>
-        <span>${media.likes} ❤</span>
+        />  
+        <div class="portfolio-text">
+        <span>${media.title}</span>
+        <span class="portfolio-likes">${media.likes} ❤</span>   
+        </div> 
       </div>
     </article>
   `;

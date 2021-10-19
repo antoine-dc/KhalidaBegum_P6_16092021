@@ -16,7 +16,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 10px;
+  margin: 20px 13px;
 }
 .desktop-title {
   display: none;
@@ -35,7 +35,7 @@
 }
 .nav-menu li {
   padding: 5px;
-  border: 1px solid #e6e4e4;
+  border: 2px solid #e6e4e4;
   border-radius: 25px;
   margin: 7px;
 }
@@ -57,10 +57,15 @@
 
 .vignette img {
   width: 100%;
-  height: 350px;
+  height: 250px;
   border-radius: 50%;
   object-fit: cover;
 }
+.vignette-link:hover {
+  transform: scale(1.1);
+  transition: ease-in-out;
+}
+
 h2 {
   font-weight: 400;
   font-size: 30px;
@@ -70,11 +75,14 @@ h2 {
 h1 {
   font-size: 18px;
   text-align: right;
-  margin: 5px;
 }
 .vignette-text {
   text-align: center;
   line-height: 2em;
+  margin: 10px;
+}
+.price {
+  color: #525252;
 }
 .vignette-text p {
   color: #000000;
@@ -89,7 +97,7 @@ h1 {
 .tags li {
   list-style: none;
   padding: 5px;
-  border: 1px solid #e6e4e4;
+  border: 2px solid #e6e4e4;
   border-radius: 25px;
   margin: 7px;
 }
@@ -103,68 +111,116 @@ h1 {
   display: flex;
   flex-direction: row;
   justify-content: left;
-  align-items: left;
   margin: 10px;
 }
 .photographer-profile h1 {
   text-align: left;
   color: #d3573c;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 40px;
+  margin-top: 25px;
 }
 .profile-text {
   color: #d3573c;
   margin-top: 5em;
 }
+.profile-text p {
+  color: #525252;
+}
 .profile-pic img {
+  height: 150px;
+  width: 150px;
   border-radius: 50%;
   object-fit: cover;
-  margin-left: 25px;
+  margin-top: 40px;
 }
 .profile-tags {
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  justify-content: space-evenly;
   align-items: center;
 }
 .profile-tags li {
   list-style: none;
   padding: 5px;
-  border: 1px solid #e6e4e4;
+  border: 2px solid #e6e4e4;
   border-radius: 25px;
-  margin: 7px;
 }
 .profile-tags a {
   text-decoration: none;
 }
-.portfolio {
+#portfolio {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 50px;
+  margin-top: 30px;
 }
-button {
-  position: static;
+.portfolio-pics {
+  margin: 20px 20px 0px 20px;
+  width: 90%;
+}
+.portfolio-pics img {
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.portfolio-pics video {
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.portfolio-text {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.portfolio-likes {
+  margin-right: 0;
+}
+.contact {
+  position: fixed;
   background-color: #901c1c;
   color: #ffffff;
   margin: 10px;
+  height: 40px;
+  width: 50%;
+  left: 23%;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+
+  border: 0;
 }
 
 @media screen and (min-width: 991px) {
-  header {
+  .photographer-info {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     margin: 15px;
     padding: 10px;
   }
   .contenu {
+    position: fixed;
     display: block;
     text-align: center;
     background-color: #d3573c;
+    width: 15%;
+    color: #000000;
+    margin: -10px 40%;
+    padding: 3px;
+    border-radius: 5px;
   }
+  .contenu:hover {
+    transform: scale(1.2);
+  }
+
   .main-header {
     justify-content: space-between;
   }
@@ -179,10 +235,10 @@ button {
   }
 
   .nav-menu {
-    border: 2px solid lightcoral;
     font-size: 12px;
     justify-content: center;
     align-items: center;
+    margin: 15px;
   }
   .gallery {
     display: flex;
@@ -195,34 +251,54 @@ button {
     margin: 20px;
     padding: 15px;
   }
-  .portfolio {
+  #portfolio {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
   }
   .portfolio-pics {
+    width: 350px;
     margin: 20px;
+    padding: 15px;
   }
-  .portfolio span {
-    display: flex;
-    color: green;
+  .portfolio-pics img {
+    height: 250px;
   }
-  .portfolio img {
-    border-radius: 15px;
+  .portfolio-pics video {
+    height: 250px;
   }
+
   .photographer-profile {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
+    background-color: #fafafa;
+    align-items: center;
+    margin-top: 50px;
+    padding: 10px;
   }
   .profile-header {
     top: 0;
     left: 0;
     margin: 20px;
   }
+  .profile-pic img {
+    height: 200px;
+    width: 200px;
+  }
   .profile-text {
-    margin: 0;
+    line-height: 2.5em;
+  }
+  #photographer_tags {
+    color: green;
+  }
+
+  .contact {
+    position: absolute;
+    height: 60px;
+    width: 150px;
   }
 }
