@@ -192,7 +192,6 @@ h1 {
   border-radius: 10px;
   font-size: 18px;
   font-weight: bold;
-
   border: 0;
 }
 
@@ -201,10 +200,10 @@ h1 {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
     margin: 15px;
     padding: 10px;
+    background-color: #fafafa;
   }
   .contenu {
     position: fixed;
@@ -213,7 +212,7 @@ h1 {
     background-color: #d3573c;
     width: 15%;
     color: #000000;
-    margin: -10px 40%;
+    margin: -8px 40%;
     padding: 3px;
     border-radius: 5px;
   }
@@ -222,7 +221,11 @@ h1 {
   }
 
   .main-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
+    margin: 10px;
   }
   h1 {
     font-size: 30px;
@@ -239,6 +242,7 @@ h1 {
     justify-content: center;
     align-items: center;
     margin: 15px;
+    padding: 10px;
   }
   .gallery {
     display: flex;
@@ -271,14 +275,8 @@ h1 {
   }
 
   .photographer-profile {
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    background-color: #fafafa;
-    align-items: center;
-    margin-top: 50px;
-    padding: 10px;
   }
   .profile-header {
     top: 0;
@@ -292,7 +290,7 @@ h1 {
   .profile-text {
     line-height: 2.5em;
   }
-  #photographer_tags {
+  .tags {
     color: green;
   }
 
@@ -300,5 +298,6 @@ h1 {
     position: absolute;
     height: 60px;
     width: 150px;
+    left: 30%;
   }
 }
