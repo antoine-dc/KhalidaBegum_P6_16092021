@@ -2,9 +2,7 @@ import { loadData, convertStringToHTML } from "./common.js";
 
 //DOM elements
 const modalBackground = document.querySelector(".background");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formdata");
-const contactForm = document.getElementById("contact-form");
+const modalBtn = document.querySelectorAll(".btn-contact");
 
 // Launch Modal
 

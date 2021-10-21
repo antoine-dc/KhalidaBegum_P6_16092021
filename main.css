@@ -54,6 +54,9 @@
 .vignette a {
   text-decoration: none;
 }
+.vignette a:hover {
+  color: #ffffff;
+}
 
 .vignette img {
   width: 100%;
@@ -102,6 +105,10 @@ h1 {
   margin: 7px;
 }
 
+.tags li:hover {
+  background-color: #901c1c;
+}
+
 /*photographer profile page*/
 .profile-header {
   position: absolute;
@@ -140,6 +147,7 @@ h1 {
   justify-content: space-evenly;
   align-items: center;
 }
+
 .profile-tags li {
   list-style: none;
   padding: 5px;
@@ -190,16 +198,20 @@ h1 {
   color: #ffffff;
   margin: 10px;
   height: 40px;
-  width: 50%;
-  left: 23%;
+  width: 150px;
+  left: 28%;
   border-radius: 10px;
   font-size: 18px;
   font-weight: bold;
   border: 0;
   cursor: pointer;
 }
+.btn-contact:hover {
+  background-color: #d3573c;
+  color: #000000;
+}
 .background {
-  display: block;
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -207,7 +219,7 @@ h1 {
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: pink;
+  background-color: transparent;
 }
 .content {
   margin: 10% auto;
@@ -220,6 +232,12 @@ h1 {
   color: #fff;
   padding-top: 10px;
 }
+.contact {
+  margin: 10px;
+  color: #000000;
+  font-size: 20px;
+}
+
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
@@ -229,16 +247,26 @@ h1 {
 }
 label {
   color: #000000;
+  font-size: 20px;
 }
 input {
   padding: 8px;
+  height: 3em;
   width: 100%;
+  border: none;
+  border-radius: 5px;
 }
 #message {
   height: 150px;
 }
 .button-send {
   margin-top: 50px;
+  background-color: #901c1c;
+  color: #ffffff;
+  font-size: 23px;
+  width: 150px;
+  border: none;
+  border-radius: 5px;
 }
 .text-control {
   margin: 0;
@@ -372,7 +400,7 @@ input {
     color: green;
   }
 
-  .contact {
+  .btn-contact {
     position: absolute;
     height: 60px;
     width: 150px;
