@@ -1,5 +1,26 @@
 import { loadData, convertStringToHTML } from "./common.js";
 
+//DOM elements
+const modalBackground = document.querySelector(".background");
+const modalBtn = document.querySelectorAll(".modal-btn");
+const formData = document.querySelectorAll(".formdata");
+const contactForm = document.getElementById("contact-form");
+
+// Launch Modal
+
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
+function launchModal() {
+  modalBackground.style.display = "block";
+}
+
+const closeBtn = modalBackground.querySelector(".close");
+
+closeBtn.addEventListener("click", closeModal);
+function closeModal() {
+  modalBackground.style.display = "none";
+}
+
 const getPhotographerBio = (photographer) => {
   return convertStringToHTML(`
   <div class="profile-text">

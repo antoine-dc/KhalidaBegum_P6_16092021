@@ -26,12 +26,46 @@
           <img src="UI-Design-FishEye-FR/logo.jpg" alt="logo-image" />
         </a>
       </div>
+
       <section class="photographer-info">
         <div id="photographer_bio" class="photographer-profile"></div>
 
         <ul id="photographer_tags" class="profile-tags"></ul>
 
-        <button class="contact">Contactez-moi</button>
+        <button class="btn-contact">Contactez-moi</button>
+        <div class="background">
+          <div class="content">
+            <span>Contactez-moi</span>
+            <span class="close"> </span>
+            <div class="modal-body">
+              <form
+                id="contact-form"
+                name="contact"
+                action="index.html"
+                method="get"
+                onsubmit="return validate();"
+              >
+                <div class="formdata">
+                  <label for="first">Prénom</label>
+                  <input type="text-control" name="first" id="first" />
+                </div>
+                <div class="formdata">
+                  <label for="last">Nom</label>
+                  <input type="text-control" name="last" id="last" />
+                </div>
+                <div class="formdata">
+                  <label for="email">Email</label>
+                  <input type="text-control" name="email" id="email" />
+                </div>
+                <div class="formdata">
+                  <label for="message">Votre Message</label>
+                  <input type="text-control" name="message" id="message" />
+                </div>
+                <input class="button-send" type="submit" value="envoyer" />
+              </form>
+            </div>
+          </div>
+        </div>
       </section>
     </header>
     <main>
