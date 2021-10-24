@@ -59,7 +59,7 @@
 }
 
 .vignette img {
-  width: 100%;
+  width: 250px;
   height: 250px;
   border-radius: 50%;
   object-fit: cover;
@@ -157,6 +157,68 @@ h1 {
 .profile-tags a {
   text-decoration: none;
 }
+
+/* menu sort by */
+
+.sort-menu label {
+  font-size: 16px;
+  width: 80px;
+}
+
+.dropbtn {
+  background-color: #901c1c;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 16px;
+  font-size: 16px;
+  margin-left: 20px;
+}
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: #d3573c;
+}
+/* hidden par default*/
+
+.sort-menu {
+  position: relative;
+  display: inline-block;
+}
+.sort-content {
+  display: none;
+  position: absolute;
+  margin-left: 20px;
+  background-color: #901c1c;
+  min-width: 160px;
+}
+.sort-content a {
+  color: black;
+  padding: 12px 16px;
+  color: #ffffff;
+  display: block;
+}
+
+.sort-content a:hover {
+  background-color: #ddd;
+}
+.show {
+  display: block;
+}
+
+/* portfolio*/
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  font-size: 30px;
+}
+#nav-left {
+  left: 20px;
+}
+#nav-right {
+  right: 20px;
+}
+
 #portfolio {
   display: flex;
   flex-direction: column;
@@ -165,6 +227,7 @@ h1 {
   margin-top: 30px;
 }
 .portfolio-pics {
+  position: relative;
   margin: 20px 20px 0px 20px;
   width: 90%;
 }
@@ -189,6 +252,8 @@ h1 {
 .portfolio-likes {
   margin-right: 0;
 }
+
+/* lightbox*/
 
 /*modal*/
 
@@ -258,6 +323,7 @@ input {
 }
 #message {
   height: 150px;
+  width: 100%;
 }
 .button-send {
   margin-top: 50px;

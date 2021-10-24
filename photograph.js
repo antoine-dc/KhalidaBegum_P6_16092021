@@ -19,6 +19,8 @@ function closeModal() {
   modalBackground.style.display = "none";
 }
 
+//photographer bio
+
 const getPhotographerBio = (photographer) => {
   return convertStringToHTML(`
   <div class="profile-text">
@@ -50,12 +52,14 @@ const getVideo = (media) => {
   return `  
   <article class="portfolio-pics">
    <div>
+   <a href="#">
      <video controls>
        <source
          src="Sample Photos/${media.photographerId}/${media.video}"
          type="Video" alt="${media.title}"
        />
      </video>
+     </a>
 <div class="portfolio-text">
      <span>${media.title}</span>
      <span>${media.likes} ❤</span>
@@ -67,11 +71,12 @@ const getVideo = (media) => {
 const getImage = (media) => {
   return `
     <article class="portfolio-pics">
+    <span class="close-lightbox></span>
       <div>
-        <img
+        <a href="#><img 
           src="Sample Photos/${media.photographerId}/${media.image}"
           alt="${media.title}"
-        />  
+        /></a>
         <div class="portfolio-text">
         <span>${media.title}</span>
         <span class="portfolio-likes">${media.likes} ❤</span>   
@@ -116,29 +121,58 @@ loadData().then((data) => {
   document.querySelector("#portfolio").appendChild(getMedias(media));
 });
 
+//sort menu
+
+const sortMenu = () => {
+  document.getElementById("dropMenu").classList.toggle("show");
+};
+
+const dropBtn = document.querySelectorAll(".dropbtn");
+
+dropBtn.forEach((btn) => btn.addEventListener("click", dropdowns));
+
+const dropdowns = document.getElementsByClassName("sort-content");
 /*
-const displayPhotographerProfile = () => {
-  document.getElementById("243").appendChild(photographerProfile());
-};
+let i;
+for (i = 0; i < dropdowns.length; i++) {
+  let openDropdown = dropdowns[i];
+  if (openDropdown.classList.contains("show")) {
+    openDropdown.classList.remove("show");
+  }
+}*/
 
-const loadData = async () => {
-  return await fetch("./FishEyeData.json").then((response) => response.json());
-};
+//lightbox
 
-const getImage = (media) => {
-  return convertStringToHtml(
-    `<img src="./Sample Photos/Mimi/${getPhotographerId()}/${media.image}"/>`
-  );
-};
+const diaporama = document.querySelector(".lightbox");
 
-const getPhotographerMedias = (medias) => {
-  return medias.filter((media) => {
-    return media.photographerId === getPhotographerId() && !media.video;
-  });
-};
+//recover arrows
 
-loadData().then((data) => {
-  getPhotographerMedias(data.media).forEach((image) => {
-    document.getElementById("portfolio").appendChild(getImage(image));
-  });
-});*/
+let next = document.querySelector("#nav-right");
+let prev = document.querySelector("#nav-left");
+next.addEventListener("click", slideNext);
+prev.addEventListener("click", slidePrev);
+
+let compteur = 0; // Compteur qui permettra de savoir sur quelle slide nous sommes
+
+function slideNext() {
+  // On incrémente le compteur
+  compteur++;
+
+  // Si on dépasse la fin du diaporama, on "rembobine"
+  if (compteur == slides.length) {
+    compteur = 0;
+  }
+}
+
+/**
+ * Cette fonction fait défiler le diaporama vers la gauche
+ */
+function slidePrev() {
+  // On décrémente le compteur
+  compteur--;
+
+  // Si on dépasse le début du diaporama, on repart à la fin
+  if (compteur < 0) {
+    compteur = slides.length - 1;
+  }
+}

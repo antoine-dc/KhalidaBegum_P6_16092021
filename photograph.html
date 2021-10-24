@@ -15,6 +15,10 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+    />
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="index.html" />
     <title>FishEye</title>
@@ -59,7 +63,7 @@
                 </div>
                 <div class="formdata">
                   <label for="message">Votre Message</label>
-                  <input type="text-control" name="message" id="message" />
+                  <textarea name="message" id="message"> </textarea>
                 </div>
                 <input class="button-send" type="submit" value="Envoyer" />
               </form>
@@ -69,7 +73,24 @@
       </section>
     </header>
     <main>
-      <div id="portfolio"></div>
+      <div class="sort-menu">
+        <label for="menu">Trier par</label>
+        <button onclick="sortMenu()" class="dropbtn">Trier par</button>
+        <div id="dropMenu" class="sort-content">
+          <a href="#">Popularité</a>
+          <a href="#"> Date</a>
+          <a href="#"> Titre</a>
+        </div>
+      </div>
+
+      <div id="portfolio" class="lightbox"></div>
+
+      <section class="nav-arrow">
+        <div>
+          <i id="nav-left" class="fas fa-arrow-left"></i>
+          <i id="nav-right" class="fas fa-arrow-right"></i>
+        </div>
+      </section>
     </main>
 
     <script src="photograph.js" type="module"></script>
