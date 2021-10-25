@@ -71,7 +71,6 @@ const getVideo = (media) => {
 const getImage = (media) => {
   return `
     <article class="portfolio-pics">
-    <span class="close-lightbox></span>
       <div>
         <a href="#><img 
           src="Sample Photos/${media.photographerId}/${media.image}"
@@ -122,7 +121,7 @@ loadData().then((data) => {
 });
 
 //sort menu
-
+/*
 const sortMenu = () => {
   document.getElementById("dropMenu").classList.toggle("show");
 };
@@ -132,6 +131,8 @@ const dropBtn = document.querySelectorAll(".dropbtn");
 dropBtn.forEach((btn) => btn.addEventListener("click", dropdowns));
 
 const dropdowns = document.getElementsByClassName("sort-content");
+
+*/
 /*
 let i;
 for (i = 0; i < dropdowns.length; i++) {
@@ -141,9 +142,10 @@ for (i = 0; i < dropdowns.length; i++) {
   }
 }*/
 
+/*
 //lightbox
-
-const diaporama = document.querySelector(".lightbox");
+const lightbox = document.querySelector(".portfolio");
+const diaporama = document.querySelectorAll(".portfolio-pics");
 
 //recover arrows
 
@@ -167,6 +169,7 @@ function slideNext() {
 /**
  * Cette fonction fait défiler le diaporama vers la gauche
  */
+/*
 function slidePrev() {
   // On décrémente le compteur
   compteur--;
@@ -176,3 +179,120 @@ function slidePrev() {
     compteur = slides.length - 1;
   }
 }
+
+*/
+/*
+const modalBackground = document.querySelector(".background");
+const modalBtn = document.querySelectorAll(".btn-contact");
+
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
+function launchModal() {
+  modalBackground.style.display = "block";
+}
+
+const closeBtn = modalBackground.querySelector(".close");
+
+closeBtn.addEventListener("click", closeModal);
+function closeModal() {
+  modalBackground.style.display = "none";
+}*/
+const lightboxBackground = document.querySelector(".lightbox");
+const lightboxPics = document.querySelectorAll(".portfolio-pics");
+
+lightboxPics.forEach((img) => img.addEventListener("click", launchLightbox));
+
+function launchLightbox() {
+  lightboxBackground.style.display = "block";
+}
+
+const closeBox = lightboxBackground.querySelector(".lightbox-close");
+
+closeBox.addEventListener("click", closeLightbox);
+function closeLightbox() {
+  lightboxBackground.style.display = "none";
+}
+/*
+class Lightbox {
+  static init() {
+    const links = document.querySelectorAll('img[src$=".jpg"],video[src$=".mp4"]')
+    .forEach(link => link.addEventListener('click',e =>{
+      e.preventDefault()
+      new Lightbox(e.currentTarget.getAttribute('src'))
+    }))
+  }
+}
+
+constructor (url) {
+  this.element = this.buildDom(url)
+  document.body.appendChild(this.element)
+}
+  loadImage(url){
+    
+        const container = this.element.querySelector('.lightbox__container');
+        container.innerHTML =''
+        this.url=url;
+        container.appendChild(image);
+        image.src = url;
+    }
+
+close(e)
+  e.preventDefault()
+  this.element.classList.add('fadeOut')
+  window.setTimeout(()=>{
+    this.element.parentElement.removeChild(this.element)
+  },500);
+  next (e) {
+    e.preventDefault()
+    let i = this.images.findIndex(image => image === this.url)
+    if (i === this.images.length - 1) {
+      i = -1
+    }
+    this.loadImage(this.images[i + 1])
+  };
+  prev (e) {
+    e.preventDefault()
+    let i = this.images.findIndex(image => image === this.url)
+    if (i === 0) {
+      i = this.images.length
+    }
+    this.loadImage(this.images[i - 1])
+  }
+
+
+buildDom(url){
+  const dom = document.createElement('div')
+  dom.classList.add('lightbox')
+  dom.innerHTML = `<button><div class="lightbox-close"></div></button>
+  <div class="nav-arrow">
+    <button><i id="nav-left" class="fas fa-arrow-left"></i></button>
+    <button><i id="nav-right" class="fas fa-arrow-right"></i></button>
+  </div>
+  <div class="lightbox-container">
+    <img
+    src="Sample Photos/${media.photographerId}/${media.image}"
+      alt="${media.title}"
+    />
+  </div>`;
+  dom.querySelector('.lightbox-close').addEventListener('click',this.close.bind(this))
+  dom.querySelector('.lightbox__next').addEventListener('click', this.next.bind(this))
+  dom.querySelector('.lightbox__prev').addEventListener('click', this.prev.bind(this))
+  return dom;
+}
+/*
+src="Sample Photos/${media.photographerId}/${media.image}"
+<div class="lightbox">
+
+<button><div class="lightbox-close"></div></button>
+<div class="nav-arrow">
+  <button><i id="nav-left" class="fas fa-arrow-left"></i></button>
+  <button><i id="nav-right" class="fas fa-arrow-right"></i></button>
+</div>
+<div class="lightbox-container">
+  <img
+    src="Sample Photos/243/Animals_Rainbow.jpg"
+    alt="lightbox-image"
+  />
+</div>
+</div>
+*/
