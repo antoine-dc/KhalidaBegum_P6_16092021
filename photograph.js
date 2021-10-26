@@ -72,7 +72,7 @@ const getImage = (media) => {
   return `
     <article class="portfolio-pics">
       <div>
-        <a href="#><img 
+        <a href="#"><img 
           src="Sample Photos/${media.photographerId}/${media.image}"
           alt="${media.title}"
         /></a>
@@ -199,6 +199,8 @@ function closeModal() {
 }*/
 const lightboxBackground = document.querySelector(".lightbox");
 const lightboxPics = document.querySelectorAll(".portfolio-pics");
+//const lightboxPics = document.querySelectorAll(".lightbox-image");
+//const lightboxPics = document.querySelectorAll(".portfolio-pics");
 
 lightboxPics.forEach((img) => img.addEventListener("click", launchLightbox));
 
@@ -212,6 +214,39 @@ closeBox.addEventListener("click", closeLightbox);
 function closeLightbox() {
   lightboxBackground.style.display = "none";
 }
+
+class Lightbox {
+  static init() {
+    const links = document
+      .querySelectorAll('img[src$=".jpg"],video[src$=".mp4"]')
+      .forEach((link) =>
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          new Lightbox(e.currentTarget.getAttribute("src"));
+        })
+      );
+  }
+}
+
+const diaporama = () => {
+  return `<button><div class="lightbox-close"></div></button>
+  <div class="nav-arrow">
+    <button><i id="nav-left" class="fas fa-arrow-left"></i></button>
+    <button><i id="nav-right" class="fas fa-arrow-right"></i></button>
+  </div>
+  <div class="lightbox-container">
+          <div class="lightbox-image">
+            <img
+              src="Sample Photos/${media.photographerId}/${media.image}"
+              alt="lightbox-image"
+            />
+          </div>
+          <div class="lightbox-text">
+            <span> ${media.title}</span>
+          </div>
+        </div>`;
+};
+
 /*
 class Lightbox {
   static init() {
@@ -229,7 +264,7 @@ constructor (url) {
 }
   loadImage(url){
     
-        const container = this.element.querySelector('.lightbox__container');
+        const container = this.element.querySelector('.lightbox-container');
         container.innerHTML =''
         this.url=url;
         container.appendChild(image);
