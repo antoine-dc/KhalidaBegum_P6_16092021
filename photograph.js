@@ -118,6 +118,9 @@ loadData().then((data) => {
     .appendChild(getTags(photographer));
 
   document.querySelector("#portfolio").appendChild(getMedias(media));
+  const lightboxPics = document.querySelectorAll(".portfolio-pics");
+  console.log(lightboxPics);
+  lightboxPics.forEach((img) => img.addEventListener("click", launchLightbox));
 });
 
 //sort menu
@@ -131,6 +134,8 @@ const dropBtn = document.querySelectorAll(".dropbtn");
 dropBtn.forEach((btn) => btn.addEventListener("click", dropdowns));
 
 const dropdowns = document.getElementsByClassName("sort-content");
+
+
 
 */
 /*
@@ -181,29 +186,14 @@ function slidePrev() {
 }
 
 */
-/*
-const modalBackground = document.querySelector(".background");
-const modalBtn = document.querySelectorAll(".btn-contact");
 
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
-function launchModal() {
-  modalBackground.style.display = "block";
-}
-
-const closeBtn = modalBackground.querySelector(".close");
-
-closeBtn.addEventListener("click", closeModal);
-function closeModal() {
-  modalBackground.style.display = "none";
-}*/
 const lightboxBackground = document.querySelector(".lightbox");
-const lightboxPics = document.querySelectorAll(".portfolio-pics");
+//const lightboxPics = document.querySelectorAll(".lightbox-container");
 //const lightboxPics = document.querySelectorAll(".lightbox-image");
-//const lightboxPics = document.querySelectorAll(".portfolio-pics");
-
+/*const lightboxPics = document.querySelectorAll(".portfolio-pics");
+console.log(lightboxPics);
 lightboxPics.forEach((img) => img.addEventListener("click", launchLightbox));
-
+*/
 function launchLightbox() {
   lightboxBackground.style.display = "block";
 }
