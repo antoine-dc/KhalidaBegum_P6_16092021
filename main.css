@@ -210,6 +210,7 @@ h1 {
   margin-left: 20px;
   background-color: #901c1c;
   min-width: 160px;
+  z-index: 1;
 }
 .sort-content a {
   color: black;
@@ -263,7 +264,7 @@ h1 {
 
 /* lightbox*/
 .lightbox {
-  display:none;
+  display: none;
   position: fixed;
   top: 0;
   left: 0;

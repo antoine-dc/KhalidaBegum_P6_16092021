@@ -74,7 +74,6 @@
     </header>
     <main>
       <div class="sort-menu">
-        <label for="menu">Trier par</label>
         <button onclick="sortMenu()" class="dropbtn">Trier par</button>
         <div id="dropMenu" class="sort-content">
           <a href="#">Popularité</a>
@@ -88,8 +87,12 @@
         <span class="lightbox-close"></span>
 
         <div class="nav-arrow">
-          <button><i id="nav-left" class="fas fa-arrow-left"></i></button>
-          <button><i id="nav-right" class="fas fa-arrow-right"></i></button>
+          <button onclick="slidePrev">
+            <i id="nav-left" class="fas fa-arrow-left"></i>
+          </button>
+          <button onclick="slideNext">
+            <i id="nav-right" class="fas fa-arrow-right"></i>
+          </button>
         </div>
         <div class="lightbox-container">
           <div class="lightbox-image">

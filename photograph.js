@@ -124,20 +124,30 @@ loadData().then((data) => {
 });
 
 //sort menu
-/*
-const sortMenu = () => {
-  document.getElementById("dropMenu").classList.toggle("show");
-};
 
+const sortContent = document.querySelector(".sort-content");
 const dropBtn = document.querySelectorAll(".dropbtn");
 
-dropBtn.forEach((btn) => btn.addEventListener("click", dropdowns));
+//const dropMenu= document.getElementById("#dropMenu");
+////const modalBackground = document.querySelector(".background");
+//const modalBtn = document.querySelectorAll(".dropbtn");
 
-const dropdowns = document.getElementsByClassName("sort-content");
+// Launch Modal
 
+dropBtn.forEach((btn) => btn.addEventListener("click", sortMenu));
 
+function sortMenu() {
+  dropMenu.style.display = "block";
+}
 
-*/
+//const closeContent = dropBtn.querySelector();
+//const closeContent = sortContent.querySelector('body');
+
+btn.addEventListener("click", closeContent);
+function closeContent() {
+  dropMenu.style.display = "none";
+}
+
 /*
 let i;
 for (i = 0; i < dropdowns.length; i++) {
@@ -154,8 +164,8 @@ const diaporama = document.querySelectorAll(".portfolio-pics");
 
 //recover arrows
 
-let next = document.querySelector("#nav-right");
-let prev = document.querySelector("#nav-left");
+const next = document.querySelector("#nav-right");
+const prev = document.querySelector("#nav-left");
 next.addEventListener("click", slideNext);
 prev.addEventListener("click", slidePrev);
 
@@ -187,13 +197,10 @@ function slidePrev() {
 
 */
 
+// lightbox open/close
+
 const lightboxBackground = document.querySelector(".lightbox");
-//const lightboxPics = document.querySelectorAll(".lightbox-container");
-//const lightboxPics = document.querySelectorAll(".lightbox-image");
-/*const lightboxPics = document.querySelectorAll(".portfolio-pics");
-console.log(lightboxPics);
-lightboxPics.forEach((img) => img.addEventListener("click", launchLightbox));
-*/
+
 function launchLightbox() {
   lightboxBackground.style.display = "block";
 }
@@ -205,19 +212,24 @@ function closeLightbox() {
   lightboxBackground.style.display = "none";
 }
 
-class Lightbox {
-  static init() {
-    const links = document
-      .querySelectorAll('img[src$=".jpg"],video[src$=".mp4"]')
-      .forEach((link) =>
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          new Lightbox(e.currentTarget.getAttribute("src"));
-        })
-      );
-  }
-}
+const links = document;
+//.querySelectorAll('img[src$=".jpg"],video[src$=".mp4"]')
+document
+  .querySelector("#portfolio")
+  .appendChild(getMedias(media))
+  .forEach((link) =>
+    link.addEventListener("click", (e) => {
+      links(e.currentTarget.getAttribute("src"));
+    })
+  );
 
+//slider arrows
+const next = document.querySelector("#nav-right");
+const prev = document.querySelector("#nav-left");
+next.addEventListener("click", slideNext);
+prev.addEventListener("click", slidePrev);
+
+/*
 const diaporama = () => {
   return `<button><div class="lightbox-close"></div></button>
   <div class="nav-arrow">
@@ -235,31 +247,21 @@ const diaporama = () => {
             <span> ${media.title}</span>
           </div>
         </div>`;
-};
+};*/
 
-/*
-class Lightbox {
-  static init() {
-    const links = document.querySelectorAll('img[src$=".jpg"],video[src$=".mp4"]')
-    .forEach(link => link.addEventListener('click',e =>{
-      e.preventDefault()
-      new Lightbox(e.currentTarget.getAttribute('src'))
-    }))
+/* 
+ constructor (url) {
+    this.element = this.buildDom(url)
+    document.body.appendChild(this.element)
   }
-}
-
-constructor (url) {
-  this.element = this.buildDom(url)
-  document.body.appendChild(this.element)
-}
-  loadImage(url){
+ loadImage(url){
     
-        const container = this.element.querySelector('.lightbox-container');
-        container.innerHTML =''
-        this.url=url;
-        container.appendChild(image);
-        image.src = url;
-    }
+    const container = this.element.querySelector('.lightbox-container');
+    container.innerHTML =''
+    this.url=url;
+    container.appendChild(image);
+    image.src = url;
+}
 
 close(e)
   e.preventDefault()
@@ -285,10 +287,10 @@ close(e)
   }
 
 
-buildDom(url){
-  const dom = document.createElement('div')
-  dom.classList.add('lightbox')
-  dom.innerHTML = `<button><div class="lightbox-close"></div></button>
+buildDom(url);
+const dom = document.createElement("div");
+dom.classList.add("lightbox");
+dom.innerHTML = `<button><div class="lightbox-close"></div></button>
   <div class="nav-arrow">
     <button><i id="nav-left" class="fas fa-arrow-left"></i></button>
     <button><i id="nav-right" class="fas fa-arrow-right"></i></button>
@@ -299,25 +301,27 @@ buildDom(url){
       alt="${media.title}"
     />
   </div>`;
-  dom.querySelector('.lightbox-close').addEventListener('click',this.close.bind(this))
-  dom.querySelector('.lightbox__next').addEventListener('click', this.next.bind(this))
-  dom.querySelector('.lightbox__prev').addEventListener('click', this.prev.bind(this))
-  return dom;
-}
-/*
-src="Sample Photos/${media.photographerId}/${media.image}"
-<div class="lightbox">
+dom
+  .querySelector(".lightbox-close")
+  .addEventListener("click", this.close.bind(this));
+dom
+  .querySelector(".lightbox__next")
+  .addEventListener("click", this.next.bind(this));
+dom
+  .querySelector(".lightbox__prev")
+  .addEventListener("click", this.prev.bind(this));
+return dom;
 
-<button><div class="lightbox-close"></div></button>
-<div class="nav-arrow">
-  <button><i id="nav-left" class="fas fa-arrow-left"></i></button>
-  <button><i id="nav-right" class="fas fa-arrow-right"></i></button>
-</div>
-<div class="lightbox-container">
-  <img
-    src="Sample Photos/243/Animals_Rainbow.jpg"
-    alt="lightbox-image"
-  />
-</div>
-</div>
+class Lightbox {
+  static init() {
+    const links = document
+      .querySelectorAll('img[src$=".jpg"],video[src$=".mp4"]')
+      .forEach((link) =>
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          new Lightbox(e.currentTarget.getAttribute("src"));
+        })
+      );
+  }
+}
 */
