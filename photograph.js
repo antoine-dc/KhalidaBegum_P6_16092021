@@ -121,18 +121,28 @@ loadData().then((data) => {
   const lightboxPics = document.querySelectorAll(".portfolio-pics");
   console.log(lightboxPics);
   lightboxPics.forEach((img) => img.addEventListener("click", launchLightbox));
+  const lightboxBackground = document.querySelector(".lightbox");
+  function launchLightbox() {
+    lightboxBackground.style.display = "block";
+  }
+  const closeBox = lightboxBackground.querySelector(".lightbox-close");
+
+  closeBox.addEventListener("click", closeLightbox);
+  function closeLightbox() {
+    lightboxBackground.style.display = "none";
+  }
 });
 
 //sort menu
 
-const sortContent = document.querySelector(".sort-content");
+//const sortContent = document.querySelector(".sort-content");
 const dropBtn = document.querySelectorAll(".dropbtn");
 
 //const dropMenu= document.getElementById("#dropMenu");
 ////const modalBackground = document.querySelector(".background");
 //const modalBtn = document.querySelectorAll(".dropbtn");
 
-// Launch Modal
+// Launch sort menu
 
 dropBtn.forEach((btn) => btn.addEventListener("click", sortMenu));
 
@@ -141,13 +151,17 @@ function sortMenu() {
 }
 
 //const closeContent = dropBtn.querySelector();
-//const closeContent = sortContent.querySelector('body');
-
+const closeContent = document.getElementById("dropMenu");
+window.onclick = function (event) {
+  if (event.target == closeContent) {
+    dropMenu.style.display = "none";
+  }
+};
+/*
 btn.addEventListener("click", closeContent);
 function closeContent() {
   dropMenu.style.display = "none";
-}
-
+}*/
 /*
 let i;
 for (i = 0; i < dropdowns.length; i++) {
@@ -162,12 +176,7 @@ for (i = 0; i < dropdowns.length; i++) {
 const lightbox = document.querySelector(".portfolio");
 const diaporama = document.querySelectorAll(".portfolio-pics");
 
-//recover arrows
 
-const next = document.querySelector("#nav-right");
-const prev = document.querySelector("#nav-left");
-next.addEventListener("click", slideNext);
-prev.addEventListener("click", slidePrev);
 
 let compteur = 0; // Compteur qui permettra de savoir sur quelle slide nous sommes
 
@@ -197,31 +206,19 @@ function slidePrev() {
 
 */
 
-// lightbox open/close
-
-const lightboxBackground = document.querySelector(".lightbox");
-
-function launchLightbox() {
-  lightboxBackground.style.display = "block";
-}
-
-const closeBox = lightboxBackground.querySelector(".lightbox-close");
-
-closeBox.addEventListener("click", closeLightbox);
-function closeLightbox() {
-  lightboxBackground.style.display = "none";
-}
-
-const links = document;
-//.querySelectorAll('img[src$=".jpg"],video[src$=".mp4"]')
-document
-  .querySelector("#portfolio")
-  .appendChild(getMedias(media))
-  .forEach((link) =>
-    link.addEventListener("click", (e) => {
-      links(e.currentTarget.getAttribute("src"));
-    })
-  );
+/*
+class Lightbox {
+  static init() {
+    const links = document
+      .querySelectorAll('img[src$=".jpg"],video[src$=".mp4"]')
+      .forEach((link) =>
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          new Lightbox(e.currentTarget.getAttribute("src"));
+        })
+      );
+  }
+}*/
 
 //slider arrows
 const next = document.querySelector("#nav-right");
@@ -229,8 +226,11 @@ const prev = document.querySelector("#nav-left");
 next.addEventListener("click", slideNext);
 prev.addEventListener("click", slidePrev);
 
-/*
-const diaporama = () => {
+/*const lightbox = document.querySelector(".portfolio");
+const diaporama = document.querySelectorAll(".portfolio-pics");
+diaporama.addEventListener("click",lightboxPics);*/
+
+/*function afficheImage() {
   return `<button><div class="lightbox-close"></div></button>
   <div class="nav-arrow">
     <button><i id="nav-left" class="fas fa-arrow-left"></i></button>
