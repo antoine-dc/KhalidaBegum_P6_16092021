@@ -58,8 +58,8 @@ dropBtn.forEach((btn) => btn.addEventListener("click", sortMenu));
 
 const contentClose = document.querySelector(".dropbtn");
 contentClose.addEventListener("click", closeMenu);
-
-/*const lightboxImage = document.querySelectorAll(".portfolio-pics");
+/*
+const lightboxImage = document.querySelectorAll(".portfolio-pics");
 const next = document.querySelector("#nav-right");
 const prev = document.querySelector("#nav-left");
 const current = 0;
@@ -71,7 +71,6 @@ const links = document.querySelectorAll(".portfolio-pics").forEach((link) =>
 );*/
 
 const closeBtn = modalBackground.querySelector(".close");
-
 closeBtn.addEventListener("click", closeModal);
 
 // Functions
@@ -80,10 +79,10 @@ function closeLightbox() {
   lightboxBackground.style.display = "none";
 }
 
-/*function launchLightbox(e) {
+function launchLightbox(e) {
   console.log(e.target);
   // lightboxBackground.style.display = "block";
-}*/
+}
 
 function launchModal() {
   modalBackground.style.display = "block";
