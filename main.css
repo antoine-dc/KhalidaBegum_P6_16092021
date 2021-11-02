@@ -222,9 +222,6 @@ h1 {
 .sort-content a:hover {
   background-color: #ddd;
 }
-.show {
-  display: block;
-}
 
 /* portfolio*/
 
@@ -283,6 +280,7 @@ h1 {
   transition: 0.3s;
   z-index: 11;
   cursor: pointer;
+  border: none;
 }
 #nav-left {
   left: 40px;

@@ -87,22 +87,37 @@
         <span class="lightbox-close"></span>
 
         <div class="nav-arrow">
-          <button onclick="slidePrev">
-            <i id="nav-left" class="fas fa-arrow-left"></i>
-          </button>
-          <button onclick="slideNext">
-            <i id="nav-right" class="fas fa-arrow-right"></i>
-          </button>
+          <button
+            id="nav-left"
+            class="fas fa-arrow-left"
+            onclick="prevImage()"
+          ></button>
+          <button
+            id="nav-right"
+            class="fas fa-arrow-right"
+            onclick="nextImage()"
+          ></button>
         </div>
         <div class="lightbox-container">
           <div class="lightbox-image">
             <img
-              src="Sample Photos/243/Animals_Rainbow.jpg"
+              src="Sample Photos/243/Travel_Lonesome.jpg"
               alt="lightbox-image"
             />
           </div>
           <div class="lightbox-text">
-            <span> Arc en ciel</span>
+            <span> Lonesome</span>
+          </div>
+        </div>
+        <div class="lightbox-container">
+          <div class="lightbox-image">
+            <img
+              src="Sample Photos/243/Travel_HillsideColor.jpg"
+              alt="lightbox-image"
+            />
+          </div>
+          <div class="lightbox-text">
+            <span> Hillside Color</span>
           </div>
         </div>
       </div>
