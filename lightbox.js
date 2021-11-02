@@ -224,3 +224,85 @@ class Lightbox {
   }
 }
 */
+/*
+const loadImage = document.querySelectorAll(".portfolio-pics");
+ const container = this.element.querySelector('.lightbox-container');
+  container.innerHTML =''
+  this.url=url;
+  container.appendChild(loadImage);
+  image.src = url;
+
+prev.addEventListener("click", function () {
+  if (current === 0) {
+    current = links.length;
+  }
+  slideLeft();
+});
+
+next.addEventListener("click", function () {
+  if (current === links.length - 1) {
+    current = -1;
+  }
+  slideRight();
+});
+*/
+/*
+function reset() {
+  for (let i = 0; i < lightboxImage.length; i++) {
+    lightboxImage[i].style.display = "none";
+  }
+}
+
+function startSlide() {
+  reset();
+  lightboxImage[0].style.display = "block";
+}
+
+function slideLeft() {
+  reset();
+  lightboxImage[current - 1];
+  current--;
+}
+
+function slideRight() {
+  reset();
+  lightboxImage[current + 1];
+  current++;
+}
+
+prev.addEventListener("click", function () {
+  if (current === 0) {
+    current = lightboxImage.length;
+  }
+  slideLeft();
+});
+
+next.addEventListener("click", function () {
+  if (current === lightboxImage.length - 1) {
+    current = -1;
+  }
+  slideRight();
+});
+
+let image = ".portfolio-pics";
+let i = image.length;
+
+function nextImage() {
+  if (i > image.length) {
+    i = i + 1;
+  } else {
+    i = 1;
+  }
+  sliderContent.innerHTML = "<img src=" + image[i - 1] + ".jpg>";
+}
+function prevImage() {
+  if (i < image.length + 1 && i > 1) {
+    i = i - 1;
+  } else {
+    i = image.length;
+  }
+  sliderContent.innerHTML = "<img src=" + image[i - 1] + ".jpg>";
+}
+
+
+*/
