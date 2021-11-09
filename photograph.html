@@ -77,31 +77,27 @@
       <div class="sort-menu">
         <span class="close-menu">Trier par</span>
         <div id="dropMenu" class="sort-content">
-          <a href="#">Popularité <button class="dropbtn">^</button> </a>
-          <a href="#"> Date</a>
-          <a href="#"> Titre</a>
+          <button class="dropbtn">^</button>
+          <button class="sort-popularity">
+            Popularité 
+          </button>
+          <button class="sort-date"> Date</button>
+          <button class="sort-title"> Titre</button>
         </div>
       </div>
+
       <div id="portfolio"></div>
       <div class="lightbox" id="lightbox">
         <span class="lightbox-close"></span>
 
         <div class="nav-arrow">
-          <button
-            id="nav-left"
-            class="fas fa-arrow-left"
-            onclick="prevImage()"
-          ></button>
-          <button
-            id="nav-right"
-            class="fas fa-arrow-right"
-            onclick="nextImage()"
-          ></button>
+          <button id="nav-left" class="fas fa-arrow-left"></button>
+          <button id="nav-right" class="fas fa-arrow-right"></button>
         </div>
         <div class="lightbox-container">
           <div class="lightbox-image"></div>
           <div class="lightbox-text">
-            <span> </span>
+            <span></span>
           </div>
         </div>
       </div>

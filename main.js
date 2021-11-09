@@ -72,19 +72,3 @@ loadData()
   .then((photographers) => {
     photographers.forEach(displayProfile);
   });
-/*const fetchData = () => {
-  return fetch("./FishEyeData.json").then((response) => response.json());
-};
-const tag = new URLSearchParams(window.location.search).get("tag");
-fetchData()
-  .then((data) => {
-    if (tag) {
-      return data.photographers.filter((photographer) =>
-        photographer.tags.includes(tag)
-      );
-    }
-    return data.photographers;
-  })
-  .then((photographers) => {
-    photographers.forEach(displayProfile);
-  });*/

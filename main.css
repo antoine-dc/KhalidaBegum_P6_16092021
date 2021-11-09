@@ -187,7 +187,7 @@ h1 {
 }
 
 .dropbtn {
-  position: fixed;
+  position: absolute;
   background-color: #901c1c;
   cursor: pointer;
   color: #ffffff;
@@ -205,6 +205,7 @@ h1 {
   position: relative;
   display: inline-block;
 }
+
 .sort-content {
   display: none;
   position: absolute;
@@ -214,14 +215,23 @@ h1 {
   min-width: 160px;
   z-index: 1;
 }
-.sort-content a {
-  color: black;
+.sort-content button {
+  width: 90%;
+  background-color: #901c1c;
   padding: 10px 10px;
   color: #ffffff;
   display: block;
-  text-decoration: none;
-  border-bottom: 1px solid;
   margin: 6px;
+  border: none;
+  border-bottom: solid 2px #ffffff;
+}
+.dropbtn {
+  position: absolute;
+  margin-left: 80%;
+  margin-top: 3px;
+  width: 3px;
+  height: 2em;
+  border: none;
 }
 
 .sort-content a:hover {
@@ -230,6 +240,7 @@ h1 {
 .close-menu {
   margin-left: 30px;
   color: #000000;
+  cursor: pointer;
 }
 
 /* portfolio*/
@@ -326,8 +337,8 @@ h1 {
 }
 
 .lightbox-container img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  object-fit: cover;
 }
 .lightbox-container {
   display: flex;
@@ -367,16 +378,12 @@ h1 {
   top: 0;
   height: 100%;
   width: 100%;
-  overflow: auto;
-  background-color: transparent;
 }
 .content {
-  margin: 10% auto;
   width: 100%;
-  max-width: 500px;
+  height: 100vh;
   animation-name: modalopen;
   background: #d3573c;
-  border-radius: 10px;
   position: relative;
   color: #fff;
   padding-top: 10px;
@@ -555,5 +562,20 @@ input {
     height: 60px;
     width: 150px;
     left: 30%;
+  }
+  .background {
+    background-color: rgba(194, 190, 190, 0.322);
+    overflow: overlay;
+  }
+  .content {
+    margin: 10% auto;
+    max-height: 92%;
+    max-width: 40%;
+    border-radius: 10px;
+  }
+  .lightbox-container img {
+    width: 50em;
+    height: 600px;
+    object-fit: cover;
   }
 }

@@ -1,56 +1,21 @@
-// Diaporama
-/*
-const lightboxPics = document.querySelectorAll(".portfolio-pics");
+/* sort
+portfolio-pic likes = popularité largest number to smallest
+portfolio-pic date = date - oldest to most recent
+portfolio-pic title = media title
 
-lightboxPics.forEach((image) => {
-  image.addEventListener("click", e => {
-    if (e.target !== e.currentTarget)return
-    const img = document.createElement("img");
-    img.src = image.src;
-    lightbox.appendChild(img);
-  });
-});
+lightbox
+-recover portfolio/portfolio-pics
+
+lightbox arrows
+const next = document.getElementById("#nav-right");
+const prev = document.getElementById("#nav-left");
+let count = 0;
 */
-/*
-const nbSlide = diaporama.length;
-
-const lightboxPics = (media) => {
-  return convertStringToHTML(`
-<div class="lightbox" id="lightbox">
-        <span class="lightbox-close"></span>
-
-        <div class="nav-arrow">
-          <button
-            id="nav-left"
-            class="fas fa-arrow-left"
-            onclick="prevImage()"
-          ></button>
-          <button
-            id="nav-right"
-            class="fas fa-arrow-right"
-            onclick="nextImage()"
-          ></button>
-        </div>
-        <div class="lightbox-container">
-          <div class="lightbox-image">
-            <img
-              src="Sample Photos/${media.photographerId}/${media.image}"
-              alt="${media.title}"
-            />
-          </div>
-          <div class="lightbox-text">
-            <span> ${media.title}</span>
-          </div>
-        </div>
-        </div>`);
-};*/
-
-/*
-
-//slider arrows
-const next = document.querySelector("#nav-right");
-const prev = document.querySelector("#nav-left");
-let count = 0; // Compteur permettra de savoir sur quelle slide nous sommes
+const lightboxDiaporama = document.querySelectorAll(".lightbox-image");
+const nbSlide = lightboxDiaporama.length;
+const next = document.getElementById("#nav-right");
+const prev = document.getElementById("#nav-left");
+let count = 0;
 
 function slideNext() {
   // Incrémente le compteur
@@ -72,237 +37,99 @@ function slidePrev() {
 }
 prev.addEventListener("click", slidePrev);
 
-class lightbox {
-  constructor(element, options = {}) {
-    this.element = element;
-    this.options = Object.assign(
-      {},
-      {
-        slidesToScroll: 1,
-        slidesVisible: 1,
-      },
-      options
-    );
-    this.children = [].slice.call(element.children);
-    let root = this.createDivWithClass("lightbox");
-    let container = this.createDivWithClass("lightbox-container");
-    root.appendChild(container);
-    this.element.appendChild(root);
-    this.children.forEach(function (child) {
-      container.appendChild(child);
-    });
-  }
-  createDivWithClass(className) {
-    let div = document.createElement("div");
-    div.setAttribute("class", className);
-    return div;
-  }
-}
+const byPopularity = [media.likes];
+byPopularity.sort();
+console.log(byPopularity);
 
-document.addEventListener("DOMContentLoaded", function () {
-  new lightbox(document.querySelector("#lightbox"), {
-    slidesToScroll: 1,
-    slidesVisible: 1,
-  });
-});
-*/
-/*
+const like = new URLSearchParams(window.location.search).get("likes");
 
-
-
-
-class lightbox  {
-  constructor (element, options = {})
+const getLikes = (media) => {
+  return convertStringToHTML(
+    media.likes
+      .map((media) => {
+        return `<span class="portfolio-likes">${media.likes} ❤</span>  `;
+      })
+      .join("")
+  );
 };
-document.addEventListener('DOMContentLoaded, function(){
 
-})
-/*
- static init() {
-    const links = document
-      .querySelectorAll('img[src$=".jpg"],video[src$=".mp4"]')
-      .forEach((link) =>
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          new Lightbox(e.currentTarget.getAttribute("src"));
-        })
-      );
-  }*/
-
-/*function afficheImage() {
-  return `<button><div class="lightbox-close"></div></button>
-  <div class="nav-arrow">
-    <button><i id="nav-left" class="fas fa-arrow-left"></i></button>
-    <button><i id="nav-right" class="fas fa-arrow-right"></i></button>
-  </div>
-  <div class="lightbox-container">
-          <div class="lightbox-image">
-            <img
-              src="Sample Photos/${media.photographerId}/${media.image}"
-              alt="lightbox-image"
-            />
-          </div>
-          <div class="lightbox-text">
-            <span> ${media.title}</span>
-          </div>
-        </div>`;
-};*/
-
-/* 
- constructor (url) {
-    this.element = this.buildDom(url)
-    document.body.appendChild(this.element)
+loadData().then((data) => {
+  if (like) {
+    return data.media.sort((media) => media.likes.includes(like));
   }
- loadImage(url){
-    
-    const container = this.element.querySelector('.lightbox-container');
-    container.innerHTML =''
-    this.url=url;
-    container.appendChild(image);
-    image.src = url;
-}
-
-close(e)
-  e.preventDefault()
-  this.element.classList.add('fadeOut')
-  window.setTimeout(()=>{
-    this.element.parentElement.removeChild(this.element)
-  },500);
-  next (e) {
-    e.preventDefault()
-    let i = this.images.findIndex(image => image === this.url)
-    if (i === this.images.length - 1) {
-      i = -1
-    }
-    this.loadImage(this.images[i + 1])
-  };
-  prev (e) {
-    e.preventDefault()
-    let i = this.images.findIndex(image => image === this.url)
-    if (i === 0) {
-      i = this.images.length
-    }
-    this.loadImage(this.images[i - 1])
-  }
-
-
-buildDom(url);
-const dom = document.createElement("div");
-dom.classList.add("lightbox");
-dom.innerHTML = `<button><div class="lightbox-close"></div></button>
-  <div class="nav-arrow">
-    <button><i id="nav-left" class="fas fa-arrow-left"></i></button>
-    <button><i id="nav-right" class="fas fa-arrow-right"></i></button>
-  </div>
-  <div class="lightbox-container">
-    <img
-    src="Sample Photos/${media.photographerId}/${media.image}"
-      alt="${media.title}"
-    />
-  </div>`;
-dom
-  .querySelector(".lightbox-close")
-  .addEventListener("click", this.close.bind(this));
-dom
-  .querySelector(".lightbox__next")
-  .addEventListener("click", this.next.bind(this));
-dom
-  .querySelector(".lightbox__prev")
-  .addEventListener("click", this.prev.bind(this));
-return dom;
-
-class Lightbox {
-  static init() {
-    const links = document
-      .querySelectorAll('img[src$=".jpg"],video[src$=".mp4"]')
-      .forEach((link) =>
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          new Lightbox(e.currentTarget.getAttribute("src"));
-        })
-      );
-  }
-}
-*/
-/*
-const loadImage = document.querySelectorAll(".portfolio-pics");
- const container = this.element.querySelector('.lightbox-container');
-  container.innerHTML =''
-  this.url=url;
-  container.appendChild(loadImage);
-  image.src = url;
-
-prev.addEventListener("click", function () {
-  if (current === 0) {
-    current = links.length;
-  }
-  slideLeft();
+  return data.media;
 });
 
-next.addEventListener("click", function () {
-  if (current === links.length - 1) {
-    current = -1;
-  }
-  slideRight();
-});
-*/
-/*
-function reset() {
-  for (let i = 0; i < lightboxImage.length; i++) {
-    lightboxImage[i].style.display = "none";
-  }
-}
+const byTitle = document.querySelector(".title");
+const urltagline = +new URLSearchParams(location.search).get("tagline");
 
-function startSlide() {
-  reset();
-  lightboxImage[0].style.display = "block";
-}
-
-function slideLeft() {
-  reset();
-  lightboxImage[current - 1];
-  current--;
-}
-
-function slideRight() {
-  reset();
-  lightboxImage[current + 1];
-  current++;
-}
-
-prev.addEventListener("click", function () {
-  if (current === 0) {
-    current = lightboxImage.length;
-  }
-  slideLeft();
-});
-
-next.addEventListener("click", function () {
-  if (current === lightboxImage.length - 1) {
-    current = -1;
-  }
-  slideRight();
-});
-
-let image = ".portfolio-pics";
-let i = image.length;
-
-function nextImage() {
-  if (i > image.length) {
-    i = i + 1;
+const sortList = ["likes", "title", "date"];
+const numberOfLikes = ["likes"];
+function sortLikes(a, b) {
+  if (a.likes > b.likes) {
+    return 1;
+  } else if (b.likes > a.likes) {
+    return -1;
   } else {
-    i = 1;
+    return 0;
   }
-  sliderContent.innerHTML = "<img src=" + image[i - 1] + ".jpg>";
 }
-function prevImage() {
-  if (i < image.length + 1 && i > 1) {
-    i = i - 1;
+
+function byLikes(a, b) {
+  if (a.likes > b.likes) {
+    return 1;
+  } else if (b.likes > a.likes) {
+    return -1;
   } else {
-    i = image.length;
+    return 0;
   }
-  sliderContent.innerHTML = "<img src=" + image[i - 1] + ".jpg>";
 }
 
+function byDate() {
+  return new Date(a.date).valueOf() - new Date(b.date).valueOf();
+}
 
-*/
+const numberOfLikes = [
+  {
+    media: likes,
+  },
+];
+
+//
+
+const sortPopularity = ["likes"];
+sortPopularity.sort("likes");
+console.log(sortPopularity);
+
+const like = new URLSearchParams(window.location.search).get("likes");
+loadData().then((data) => {
+  if (like) {
+    return data.media.sort((media) => media.likes.includes(like));
+  }
+  return data.media;
+});
+
+const getLikes = (media) => {
+  return convertStringToHTML(
+    media.likes
+      .map((media) => {
+        return `<span class="portfolio-likes">${media.likes} ❤</span>  `;
+      })
+      .join("")
+  );
+};
+
+function displayLikes(media, likes) {
+  return sortPopularity;
+}
+
+sortPopularity.addEventListener("click");
+
+/*
+- let getLikes = searchparam
+- let likes = numberOfLikes each media
+- function sortLikes = sortLikes from most likes to least
+- logLikes
+- click popular to display in order of numberOfLikes
+
+ */

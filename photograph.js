@@ -31,7 +31,7 @@ loadData().then((data) => {
     .appendChild(getTags(photographer));
 
   document.querySelector("#portfolio").appendChild(getMedias(media));
-  const lightboxPics = document.querySelectorAll(".portfolio-pics a");
+  const lightboxPics = document.querySelectorAll(".portfolio-pics");
 
   //console.log(lightboxPics);
   lightboxPics.forEach((img) =>
@@ -58,17 +58,6 @@ dropBtn.forEach((btn) => btn.addEventListener("click", sortMenu));
 
 const contentClose = document.querySelector(".dropbtn");
 contentClose.addEventListener("click", closeMenu);
-/*
-const lightboxImage = document.querySelectorAll(".portfolio-pics");
-const next = document.querySelector("#nav-right");
-const prev = document.querySelector("#nav-left");
-const current = 0;
-const links = document.querySelectorAll(".portfolio-pics").forEach((link) =>
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    new links(e.currentTarget.getMedias("medias"));
-  })
-);*/
 
 const closeBtn = modalBackground.querySelector(".close");
 closeBtn.addEventListener("click", closeModal);
@@ -81,8 +70,9 @@ function closeLightbox() {
 
 function launchLightbox(e) {
   console.log(e.target);
-  // lightboxBackground.style.display = "block";
+  lightboxBackground.style.display = "block";
 }
+//e.target.getAttribute("data-id");
 
 function launchModal() {
   modalBackground.style.display = "block";
@@ -141,9 +131,9 @@ const getVideo = (media, index) => {
        />
      </video>
      </a>
-<div class="portfolio-text">
-     <span>${media.title}</span>
-     <span>${media.likes} ❤</span>
+<div class="portfolio-text" data-id="${index}">
+     <span class="title">${media.title}</span>
+     <span class="portfolio-likes">${media.likes} ❤</span>
      </div>
    </div>
  </article>
@@ -158,8 +148,8 @@ const getImage = (media, index) => {
           alt="${media.title}"
           data-id="${index}"
         /></a>
-        <div class="portfolio-text">
-        <span>${media.title}</span>
+        <div class="portfolio-text" data-id="${index}">
+        <span class="title">${media.title}</span>
         <span class="portfolio-likes">${media.likes} ❤</span>   
         </div> 
       </div>
@@ -179,3 +169,77 @@ const getMedias = (medias) => {
     medias.map((media, index) => getMedia(media, index)).join("")
   );
 };
+/*
+const diaporamaPic = document.querySelectorAll(".portfolio-pics");
+const nbSlide = diaporamaPic.length;
+const next = document.querySelector("#nav-right");
+const prev = document.querySelector("#nav-left");
+let count = 0;
+
+diaporamaPic.forEach((img) =>
+  img.addEventListener("click", (e) => {
+    let indexMedia = e.target.getAttribute("data-id");
+
+    let containerMedia = document.querySelector(".lightbox-image");
+
+    containerMedia.innerHTML = diaporamaPic[indexMedia].innerHTML;
+  })
+);
+
+function slideNext() {
+  if (count < nbSlide - 1) {
+    count++;
+  } else {
+    count = 0;
+  }
+
+  console.log(diaporamaPic);
+}
+next.addEventListener("click", slideNext);
+
+function slidePrev() {
+  if (count > 0) {
+    count--;
+  } else {
+    count = nbSlide - 1;
+  }
+
+  console.log(diaporamaPic);
+}
+prev.addEventListener("click", slidePrev);
+
+*/
+/*
+const like = new URLSearchParams(window.location.search).get("likes");
+const numberOfLikes = document.querySelector(".sort-popularite");
+
+
+
+const getLikes = (media) => {
+  return convertStringToHTML(
+    media.likes
+      .map((media) => {
+        return `<span class="portfolio-likes">${media.likes} ❤</span>  `;
+      })
+      .join("")
+  );
+};
+
+loadData()
+  .then((data) => {
+    if (like) {
+      return data.media.sort((media) => media.likes.includes(like));
+    }
+    return data.media;
+  });
+
+numberOfLikes.addEventListener("click", getLikes);
+*/
+const numberOfLikes = ["likes"];
+numberOfLikes.sort("likes");
+console.log(numberOfLikes);
+
+function sortLikes() {
+  return numberOfLikes;
+}
+numberOfLikes.addEventListener("click", sortLikes);
