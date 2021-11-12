@@ -124,3 +124,41 @@ newCount=parseInt(newCount) +1;
 console.log(newCount);
 containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
 });
+
+const next = document.querySelector("#nav-right");
+const prev = document.querySelector("#nav-left");
+  //next.addEventListener("click", slideNext);
+  // prev.addEventListener("click", slidePrev);
+  //console.log(diaporamaPic);
+
+  //const nbSlide = diaporamaPic.length;
+
+  let count = 0;
+  let newCount = count;
+  let containerMedia = document.querySelector(".lightbox-image");
+
+  next.addEventListener("click", (slideNext) => {
+    //1 - recover count index
+
+    //let count = 0;
+    //let newCount = count;
+    console.log(count);
+    //2 - add 1 to count
+    newCount = parseInt(newCount) + 1;
+    console.log(newCount);
+
+    containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
+  });
+
+  prev.addEventListener("click", ()=>{
+    //1 - recover count index
+
+    //let count = 0;
+    //let newCount = count;
+    console.log(count);
+    //2 - add 1 to count
+    newCount = parseInt(newCount) - 1;
+    console.log(newCount);
+
+    containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
+  });

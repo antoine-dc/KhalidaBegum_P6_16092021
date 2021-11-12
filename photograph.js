@@ -51,7 +51,7 @@ loadData().then((data) => {
   closeBox.addEventListener("click", closeLightbox);
 
   const next = document.querySelector("#nav-right");
-  //const prev = document.querySelector("#nav-left");
+  const prev = document.querySelector("#nav-left");
   //next.addEventListener("click", slideNext);
   // prev.addEventListener("click", slidePrev);
   //console.log(diaporamaPic);
@@ -62,15 +62,23 @@ loadData().then((data) => {
   let newCount = count;
   let containerMedia = document.querySelector(".lightbox-image");
 
-  next.addEventListener("click", (slideNext) => {
+  next.addEventListener("click", () => {
     //1 - recover count index
 
-    //let count = 0;
-    //let newCount = count;
-    console.log(count);
+    //console.log(count);
     //2 - add 1 to count
     newCount = parseInt(newCount) + 1;
     console.log(newCount);
+
+    containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
+  });
+  prev.addEventListener("click", () => {
+    //1 - recover count index
+
+    //console.log(count);
+    //2 - subtract 1 from count
+    newCount = parseInt(newCount) - 1;
+    //console.log(newCount);
 
     containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
   });
