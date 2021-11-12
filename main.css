@@ -215,7 +215,9 @@ h1 {
   min-width: 160px;
   z-index: 1;
 }
-.sort-content button {
+.sort-popularity,
+.sort-date,
+.sort-title {
   width: 90%;
   background-color: #901c1c;
   padding: 10px 10px;
@@ -224,14 +226,14 @@ h1 {
   margin: 6px;
   border: none;
   border-bottom: solid 2px #ffffff;
+  cursor: pointer;
 }
 .dropbtn {
-  position: absolute;
-  margin-left: 80%;
-  margin-top: 3px;
-  width: 3px;
-  height: 2em;
-  border: none;
+  padding: 0;
+  left: 54%;
+  margin-top: 15px;
+  max-width: 3px;
+  max-height: 3px;
 }
 
 .sort-content a:hover {

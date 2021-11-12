@@ -36,11 +36,11 @@ loadData().then((data) => {
   //console.log(lightboxPics);
   lightboxPics.forEach((img) =>
     img.addEventListener("click", (e) => {
-      let indexMedia = e.target.getAttribute("data-id");
+      let newCount = e.target.getAttribute("data-id");
 
       let containerMedia = document.querySelector(".lightbox-image");
 
-      containerMedia.innerHTML = lightboxPics[indexMedia].innerHTML;
+      containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
 
       lightboxBackground.style.display = "block";
     })
@@ -49,6 +49,31 @@ loadData().then((data) => {
   const closeBox = lightboxBackground.querySelector(".lightbox-close");
 
   closeBox.addEventListener("click", closeLightbox);
+
+  const next = document.querySelector("#nav-right");
+  //const prev = document.querySelector("#nav-left");
+  //next.addEventListener("click", slideNext);
+  // prev.addEventListener("click", slidePrev);
+  //console.log(diaporamaPic);
+
+  //const nbSlide = diaporamaPic.length;
+
+  let count = 0;
+  let newCount = count;
+  let containerMedia = document.querySelector(".lightbox-image");
+
+  next.addEventListener("click", (slideNext) => {
+    //1 - recover count index
+
+    //let count = 0;
+    //let newCount = count;
+    console.log(count);
+    //2 - add 1 to count
+    newCount = parseInt(newCount) + 1;
+    console.log(newCount);
+
+    containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
+  });
 });
 
 // Launch sort menu
@@ -170,76 +195,42 @@ const getMedias = (medias) => {
   );
 };
 /*
-const diaporamaPic = document.querySelectorAll(".portfolio-pics");
-const nbSlide = diaporamaPic.length;
-const next = document.querySelector("#nav-right");
-const prev = document.querySelector("#nav-left");
-let count = 0;
-
-diaporamaPic.forEach((img) =>
-  img.addEventListener("click", (e) => {
-    let indexMedia = e.target.getAttribute("data-id");
-
-    let containerMedia = document.querySelector(".lightbox-image");
-
-    containerMedia.innerHTML = diaporamaPic[indexMedia].innerHTML;
-  })
-);
-
 function slideNext() {
   if (count < nbSlide - 1) {
     count++;
   } else {
     count = 0;
   }
+  let count = 0;
+  let newCount = count;
 
-  console.log(diaporamaPic);
-}
-next.addEventListener("click", slideNext);
+  console.log(count);
 
+  newCount = parseInt(newCount) + 1;
+  console.log(newCount);
+
+  containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
+}*/
+/*
 function slidePrev() {
-  if (count > 0) {
+  /*if (count > 0) {
     count--;
   } else {
     count = nbSlide - 1;
   }
-
-  console.log(diaporamaPic);
+  console.log("slider prev");
 }
-prev.addEventListener("click", slidePrev);
+const next = document.querySelector("#nav-right");
+next.addEventListener("click", (slideNext) => {
+  //1 - recover count index
 
+  let count = 0;
+  let newCount = count;
+  console.log(newCount);
+  //2 - add 1 to count
+  //newCount = parseInt(newCount) + 1;
+  //console.log(newCount);
+
+  // containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
+});
 */
-/*
-const like = new URLSearchParams(window.location.search).get("likes");
-const numberOfLikes = document.querySelector(".sort-popularite");
-
-
-
-const getLikes = (media) => {
-  return convertStringToHTML(
-    media.likes
-      .map((media) => {
-        return `<span class="portfolio-likes">${media.likes} ❤</span>  `;
-      })
-      .join("")
-  );
-};
-
-loadData()
-  .then((data) => {
-    if (like) {
-      return data.media.sort((media) => media.likes.includes(like));
-    }
-    return data.media;
-  });
-
-numberOfLikes.addEventListener("click", getLikes);
-*/
-const numberOfLikes = ["likes"];
-numberOfLikes.sort("likes");
-console.log(numberOfLikes);
-
-function sortLikes() {
-  return numberOfLikes;
-}
-numberOfLikes.addEventListener("click", sortLikes);

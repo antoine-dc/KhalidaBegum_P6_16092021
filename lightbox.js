@@ -1,29 +1,22 @@
-/* sort
-portfolio-pic likes = popularité largest number to smallest
-portfolio-pic date = date - oldest to most recent
-portfolio-pic title = media title
-
-lightbox
--recover portfolio/portfolio-pics
-
-lightbox arrows
+//lightbox arrows
 const next = document.getElementById("#nav-right");
 const prev = document.getElementById("#nav-left");
 let count = 0;
-*/
-const lightboxDiaporama = document.querySelectorAll(".lightbox-image");
+
+const lightboxDiaporama = document.querySelectorAll(".portfolio-pics");
 const nbSlide = lightboxDiaporama.length;
 const next = document.getElementById("#nav-right");
 const prev = document.getElementById("#nav-left");
 let count = 0;
 
 function slideNext() {
-  // Incrémente le compteur
+ /* // Incrémente le compteur
   count++;
   if (count == nbSlide) {
     // Si on dépasse la fin du diaporama, on "rembobine"
     count = 0;
-  }
+  }*/
+
 }
 next.addEventListener("click", slideNext);
 
@@ -37,99 +30,97 @@ function slidePrev() {
 }
 prev.addEventListener("click", slidePrev);
 
-const byPopularity = [media.likes];
-byPopularity.sort();
-console.log(byPopularity);
+const next = document.getElementById("#nav-right");
+const prev = document.getElementById("#nav-left");
+let count = 0;
+let newCount = count;
 
-const like = new URLSearchParams(window.location.search).get("likes");
+next.addEventListener("click", slideNext);
+  function slideNext() {
+    let newCount = count;
+    console.log(newCount);
 
-const getLikes = (media) => {
-  return convertStringToHTML(
-    media.likes
-      .map((media) => {
-        return `<span class="portfolio-likes">${media.likes} ❤</span>  `;
-      })
-      .join("")
-  );
-};
+    newCount = parseInt(newCount) + 1;
+    console.log(newCount);
+  };
+
 
 loadData().then((data) => {
-  if (like) {
-    return data.media.sort((media) => media.likes.includes(like));
-  }
-  return data.media;
-});
+  const photographer = data.photographers.find((photographer) => {
+    return photographer.id === urlPhotographerId;
+  });
+  const media = data.media.filter((media) => {
+    return media.photographerId === urlPhotographerId;
+  });
 
-const byTitle = document.querySelector(".title");
-const urltagline = +new URLSearchParams(location.search).get("tagline");
+  document.title = photographer.name;
+  document
+    .querySelector("#photographer_bio")
+    .appendChild(getPhotographerBio(photographer));
 
-const sortList = ["likes", "title", "date"];
-const numberOfLikes = ["likes"];
-function sortLikes(a, b) {
-  if (a.likes > b.likes) {
-    return 1;
-  } else if (b.likes > a.likes) {
-    return -1;
-  } else {
-    return 0;
-  }
-}
+  document
+    .querySelector("#photographer_tags")
+    .appendChild(getTags(photographer));
 
-function byLikes(a, b) {
-  if (a.likes > b.likes) {
-    return 1;
-  } else if (b.likes > a.likes) {
-    return -1;
-  } else {
-    return 0;
-  }
-}
+  document.querySelector("#portfolio").appendChild(getMedias(media));
+  const lightboxPics = document.querySelectorAll(".portfolio-pics");
 
-function byDate() {
-  return new Date(a.date).valueOf() - new Date(b.date).valueOf();
-}
+  //console.log(lightboxPics);
+  lightboxPics.forEach((img) =>
+    img.addEventListener("click", (e) => {
+      let count = e.target.getAttribute("data-id");
 
-const numberOfLikes = [
-  {
-    media: likes,
-  },
-];
+      let containerMedia = document.querySelector(".lightbox-image");
 
-//
+      containerMedia.innerHTML = lightboxPics[count].innerHTML;
 
-const sortPopularity = ["likes"];
-sortPopularity.sort("likes");
-console.log(sortPopularity);
-
-const like = new URLSearchParams(window.location.search).get("likes");
-loadData().then((data) => {
-  if (like) {
-    return data.media.sort((media) => media.likes.includes(like));
-  }
-  return data.media;
-});
-
-const getLikes = (media) => {
-  return convertStringToHTML(
-    media.likes
-      .map((media) => {
-        return `<span class="portfolio-likes">${media.likes} ❤</span>  `;
-      })
-      .join("")
+      lightboxBackground.style.display = "block";
+    })
   );
-};
+  const closeBox = lightboxBackground.querySelector(".lightbox-close");
 
-function displayLikes(media, likes) {
-  return sortPopularity;
+  closeBox.addEventListener("click", closeLightbox);
+
+  const next = document.querySelector("#nav-right");
+  const prev = document.querySelector("#nav-left");
+  next.addEventListener("click", slideNext);
+  prev.addEventListener("click", slidePrev);
+  //console.log(diaporamaPic);
+
+  //const nbSlide = diaporamaPic.length;
+
+  //let count = 0;
+  //let newCount = count;
+});
+
+function closeLightbox() {
+  lightboxBackground.style.display = "none";
 }
 
-sortPopularity.addEventListener("click");
+function launchLightbox(e) {
+  console.log(e.target);
+  lightboxBackground.style.display = "block";
+}
+//e.target.getAttribute("data-id");
 
-/*
-- let getLikes = searchparam
-- let likes = numberOfLikes each media
-- function sortLikes = sortLikes from most likes to least
-- logLikes
-- click popular to display in order of numberOfLikes
+var slide = new Array(".portfolio-pics");
+var numero = 0;
 
- */
+function ChangeSlide(sens) {
+  numero = numero + sens;
+  if (numero < 0) numero = slide.length - 1;
+  if (numero > slide.length - 1) numero = 0;
+  document.getElementById("lightbox").src = slide[numero];
+}
+next.addEventListener("click",function(){
+
+
+//1 - recover count index
+//let newCount = count;
+//console.log(newCount)
+
+//2 - add 1 to count
+newCount=parseInt(newCount) +1;
+console.log(newCount);
+containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
+});
