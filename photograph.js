@@ -32,11 +32,11 @@ loadData().then((data) => {
 
   document.querySelector("#portfolio").appendChild(getMedias(media));
   const lightboxPics = document.querySelectorAll(".portfolio-pics");
-
+  let count = 0;
   //console.log(lightboxPics);
   lightboxPics.forEach((img) =>
     img.addEventListener("click", (e) => {
-      let count = e.target.getAttribute("data-id");
+      count = e.target.getAttribute("data-id");
 
       let containerMedia = document.querySelector(".lightbox-image");
 
@@ -53,66 +53,27 @@ loadData().then((data) => {
   const next = document.querySelector("#nav-right");
   const prev = document.querySelector("#nav-left");
 
-  //const nbSlide = Array.from(lightboxPics);
-  //const slide = lightboxPics.length;
-
-  let count = 0; //current
-  let newCount = count;
-  //let countPlus = parseInt()+1;
-  //let countMinus = count --;
   let containerMedia = document.querySelector(".lightbox-image");
 
   next.addEventListener("click", () => {
-    // newCount =(e.target.getAttribute("data-id")) +1;
+    count = parseInt(count) + 1;
 
-    //newCount ++;
-    //1 - recover count index
-
-    //  fin du diaporama, on "rembobine"
-    newCount = parseInt(newCount) + 1;
-    //console.log(count);
-    //2 - add 1 to count
-
-    //newCount = parseInt(next.getAttribute("data-id"))+1;
-    console.log(newCount);
-    containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
+    console.log(count);
+    if (count > lightboxPics.length - 1) {
+      count = 0;
+    }
+    containerMedia.innerHTML = lightboxPics[count].innerHTML;
   });
 
   prev.addEventListener("click", () => {
-    // Si on dépasse le début du diaporama, on repart à la fin
-
-    //1 - recover count index
-    //console.log(count);
-    //2 - subtract 1 from count
-    newCount = parseInt(newCount) - 1;
-    console.log(newCount);
-
-    containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
-  });
-
-  // sort
-  const byTitle = document.querySelector(".sort-title");
-  const title = new URLSearchParams(location.search).get("title");
-  const getTitle = (media) => {
-    return convertStringToHTML(
-      media.title
-        .map((media) => {
-          return ` <span class="title">${media.title}</span>`;
-        })
-        .join("")
-    );
-  };
- 
-
-  //const like = new URLSearchParams(window.location.search).get("likes");
-  loadData().then((data) => {
-    if (title) {
-      return data.media.filter((title) => media.title.includes(title));
+    count = parseInt(count) - 1;
+    console.log(count);
+    if (count < 0) {
+      count = lightboxPics.length - 1;
     }
-    return data.media;
+
+    containerMedia.innerHTML = lightboxPics[count].innerHTML;
   });
-  byTitle.addEventListener("click", getTitle);
-  console.log(getTitle);
 });
 
 // Launch sort menu

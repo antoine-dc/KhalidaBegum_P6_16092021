@@ -414,3 +414,25 @@ loadData()
     return data.photographers;
   });
   
+  // sort
+  const byTitle = document.querySelector(".sort-title");
+  const title = new URLSearchParams(window.location.search).getAll("title");
+  const getTitle = (media) => {
+    return convertStringToHTML(
+      media.title
+        .map((title) => {
+          return ` <span class="title">${media.title}</span>`;
+        })
+        .join("")
+    );
+  };
+  //console.log(title);
+
+  //const like = new URLSearchParams(window.location.search).get("likes");
+  loadData().then((media) => {
+    if (title) {
+      //   return data.media.filter((title) => media.title.includes(title));
+    }
+    return data.media;
+  });
+  byTitle.addEventListener("click", loadData);
