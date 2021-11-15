@@ -162,3 +162,36 @@ const prev = document.querySelector("#nav-left");
 
     containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
   });
+
+  function slideNext() {
+    /// Incrémente le compteur
+     count++;
+     if (count == nbSlide) {
+       // Si on dépasse la fin du diaporama, on "rembobine"
+       count = 0;
+     }
+   
+   }
+   for (let i =0;i<5;i++){
+     console.log(loop);
+   };
+   /*
+function slideNext() {
+  if (count < nbSlide - 1) {
+    count++;
+  } else {
+    count = 0;
+  }
+ 
+};
+
+function slidePrev() {
+  /if (count > 0) {
+    count--;
+  } else {
+    count = nbSlide - 1;
+  }
+  console.log("slider prev");//
+}
+
+*/

@@ -36,11 +36,11 @@ loadData().then((data) => {
   //console.log(lightboxPics);
   lightboxPics.forEach((img) =>
     img.addEventListener("click", (e) => {
-      let newCount = e.target.getAttribute("data-id");
+      let count = e.target.getAttribute("data-id");
 
       let containerMedia = document.querySelector(".lightbox-image");
 
-      containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
+      containerMedia.innerHTML = lightboxPics[count].innerHTML;
 
       lightboxBackground.style.display = "block";
     })
@@ -52,36 +52,67 @@ loadData().then((data) => {
 
   const next = document.querySelector("#nav-right");
   const prev = document.querySelector("#nav-left");
-  //next.addEventListener("click", slideNext);
-  // prev.addEventListener("click", slidePrev);
-  //console.log(diaporamaPic);
 
-  //const nbSlide = diaporamaPic.length;
+  //const nbSlide = Array.from(lightboxPics);
+  //const slide = lightboxPics.length;
 
-  let count = 0;
+  let count = 0; //current
   let newCount = count;
+  //let countPlus = parseInt()+1;
+  //let countMinus = count --;
   let containerMedia = document.querySelector(".lightbox-image");
 
   next.addEventListener("click", () => {
+    // newCount =(e.target.getAttribute("data-id")) +1;
+
+    //newCount ++;
     //1 - recover count index
 
+    //  fin du diaporama, on "rembobine"
+    newCount = parseInt(newCount) + 1;
     //console.log(count);
     //2 - add 1 to count
-    newCount = parseInt(newCount) + 1;
+
+    //newCount = parseInt(next.getAttribute("data-id"))+1;
+    console.log(newCount);
+    containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
+  });
+
+  prev.addEventListener("click", () => {
+    // Si on dépasse le début du diaporama, on repart à la fin
+
+    //1 - recover count index
+    //console.log(count);
+    //2 - subtract 1 from count
+    newCount = parseInt(newCount) - 1;
     console.log(newCount);
 
     containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
   });
-  prev.addEventListener("click", () => {
-    //1 - recover count index
 
-    //console.log(count);
-    //2 - subtract 1 from count
-    newCount = parseInt(newCount) - 1;
-    //console.log(newCount);
+  // sort
+  const byTitle = document.querySelector(".sort-title");
+  const title = new URLSearchParams(location.search).get("title");
+  const getTitle = (media) => {
+    return convertStringToHTML(
+      media.title
+        .map((media) => {
+          return ` <span class="title">${media.title}</span>`;
+        })
+        .join("")
+    );
+  };
+ 
 
-    containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
+  //const like = new URLSearchParams(window.location.search).get("likes");
+  loadData().then((data) => {
+    if (title) {
+      return data.media.filter((title) => media.title.includes(title));
+    }
+    return data.media;
   });
+  byTitle.addEventListener("click", getTitle);
+  console.log(getTitle);
 });
 
 // Launch sort menu
@@ -142,6 +173,7 @@ const getPhotographerBio = (photographer) => {
   
 `);
 };
+
 const getTags = (photographer) => {
   return convertStringToHTML(
     photographer.tags
@@ -202,43 +234,28 @@ const getMedias = (medias) => {
     medias.map((media, index) => getMedia(media, index)).join("")
   );
 };
-/*
-function slideNext() {
-  if (count < nbSlide - 1) {
-    count++;
+
+//const like = new URLSearchParams(getLikes);
+
+//byPopularity.addEventListener("click", sortedLikes);
+//console.log(like);
+
+//const getLikes = +new URLSearchParams(location.search).value('likes');
+//const titles = new URLSearchParams(window.location.search).sort(['title']);
+//const titles = new URLSearchParams(window.location.search).get("title");
+//const title = "$.title";
+/*const titles = ["a", "c", "b", "e", "d"];
+const sortedTitles = titles.sort((a, b) => {
+  if (a < b) {
+    return -1;
+  } else if (a > b) {
+    return 1;
   } else {
-    count = 0;
+    return 0;
   }
-  let count = 0;
-  let newCount = count;
-
-  console.log(count);
-
-  newCount = parseInt(newCount) + 1;
-  console.log(newCount);
-
-  containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
-}*/
-/*
-function slidePrev() {
-  /*if (count > 0) {
-    count--;
-  } else {
-    count = nbSlide - 1;
-  }
-  console.log("slider prev");
-}
-const next = document.querySelector("#nav-right");
-next.addEventListener("click", (slideNext) => {
-  //1 - recover count index
-
-  let count = 0;
-  let newCount = count;
-  console.log(newCount);
-  //2 - add 1 to count
-  //newCount = parseInt(newCount) + 1;
-  //console.log(newCount);
-
-  // containerMedia.innerHTML = lightboxPics[newCount].innerHTML;
 });
+
+byTitle.addEventListener("click", sortedTitles);
+
+console.log(sortedTitles);
 */

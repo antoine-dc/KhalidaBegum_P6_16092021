@@ -279,6 +279,10 @@ h1 {
 
 .portfolio-likes {
   margin-right: 0;
+  cursor: pointer;
+}
+.title {
+  cursor: pointer;
 }
 
 /* lightbox*/
