@@ -78,11 +78,15 @@
         <span class="close-menu">Trier par</span>
         <div id="dropMenu" class="sort-content">
           <button class="dropbtn">^</button>
-          <button class="sort-popularity">
-            Popularité 
-          </button>
-          <button class="sort-date"> Date</button>
-          <button class="sort-title"> Titre</button>
+          <a href="photograph.html?like=${media.likes}">
+            <button class="sort-popularity">Popularité</button>
+          </a>
+          <a href="photograph.html?date=${media.date}"
+            ><button class="sort-date">Date</button></a
+          >
+          <a href="photograph.html?title=${media.title}"
+            ><button class="sort-title">Titre</button></a
+          >
         </div>
       </div>
 

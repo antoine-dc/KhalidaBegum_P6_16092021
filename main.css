@@ -276,11 +276,15 @@ h1 {
   display: flex;
   justify-content: space-between;
 }
+.portfolio-text a {
+  text-decoration: none;
+}
 
 .portfolio-likes {
   margin-right: 0;
   cursor: pointer;
 }
+
 .title {
   cursor: pointer;
 }
