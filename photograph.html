@@ -1,112 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="FishEye Site web de photographes freelances, accessibles aux utilisateurs malvoyants "
-    />
-    <meta name="author" content="Khalida Begum" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-    />
-    <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="index.html" />
-    <title>FishEye</title>
-  </head>
 
-  <body>
-    <header>
-      <div class="profile-header">
-        <a href="index.html">
-          <img src="UI-Design-FishEye-FR/logo.jpg" alt="logo-image" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="FishEye Site web de photographes freelances, accessibles aux utilisateurs malvoyants " />
+  <meta name="author" content="Khalida Begum" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" />
+  <link rel="stylesheet" href="./css/main.css" />
+  <title>FishEye</title>
+</head>
+
+<body>
+  <header>
+    <div class="profile-header">
+      <a href="index.html">
+        <img src="UI-Design-FishEye-FR/logo.jpg" alt="logo-image" />
+      </a>
+    </div>
+
+    <section class="photographer-info">
+      <div id="photographer_bio" class="photographer-profile"></div>
+
+      <ul id="photographer_tags" class="profile-tags"></ul>
+
+      <button class="btn-contact">Contactez-moi</button>
+      <div class="background">
+        <div class="content">
+          <span class="contact">Contactez-moi</span>
+          <span class="close"> </span>
+          <div class="modal-body">
+            <form id="contact-form" name="contact" action="index.html" method="get" onsubmit="return validate();">
+              <div class="formdata">
+                <label for="first">Prénom</label>
+                <input type="text-control" name="first" id="first" />
+              </div>
+              <div class="formdata">
+                <label for="last">Nom</label>
+                <input type="text-control" name="last" id="last" />
+              </div>
+              <div class="formdata">
+                <label for="email">Email</label>
+                <input type="text-control" name="email" id="email" />
+              </div>
+              <div class="formdata">
+                <label for="message">Votre Message</label>
+                <textarea name="message" id="message"> </textarea>
+              </div>
+              <input class="button-send" type="submit" value="Envoyer" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+  <main>
+    <div class="sort-menu">
+      <span class="close-menu">Trier par</span>
+      <div id="dropMenu" class="sort-content">
+        <button class="dropbtn">^</button>
+        <a href="photograph.html?like=${media.likes}">
+          <button class="sort-popularity">Popularité</button>
         </a>
+        <a href="photograph.html?date=${media.date}"><button class="sort-date">Date</button></a>
+        <a href="photograph.html?title=${media.title}"><button class="sort-title">Titre</button></a>
       </div>
+    </div>
 
-      <section class="photographer-info">
-        <div id="photographer_bio" class="photographer-profile"></div>
+    <div id="portfolio"></div>
+    <div class="lightbox" id="lightbox">
+      <span class="lightbox-close"></span>
 
-        <ul id="photographer_tags" class="profile-tags"></ul>
-
-        <button class="btn-contact">Contactez-moi</button>
-        <div class="background">
-          <div class="content">
-            <span class="contact">Contactez-moi</span>
-            <span class="close"> </span>
-            <div class="modal-body">
-              <form
-                id="contact-form"
-                name="contact"
-                action="index.html"
-                method="get"
-                onsubmit="return validate();"
-              >
-                <div class="formdata">
-                  <label for="first">Prénom</label>
-                  <input type="text-control" name="first" id="first" />
-                </div>
-                <div class="formdata">
-                  <label for="last">Nom</label>
-                  <input type="text-control" name="last" id="last" />
-                </div>
-                <div class="formdata">
-                  <label for="email">Email</label>
-                  <input type="text-control" name="email" id="email" />
-                </div>
-                <div class="formdata">
-                  <label for="message">Votre Message</label>
-                  <textarea name="message" id="message"> </textarea>
-                </div>
-                <input class="button-send" type="submit" value="Envoyer" />
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-    </header>
-    <main>
-      <div class="sort-menu">
-        <span class="close-menu">Trier par</span>
-        <div id="dropMenu" class="sort-content">
-          <button class="dropbtn">^</button>
-          <a href="photograph.html?like=${media.likes}">
-            <button class="sort-popularity">Popularité</button>
-          </a>
-          <a href="photograph.html?date=${media.date}"
-            ><button class="sort-date">Date</button></a
-          >
-          <a href="photograph.html?title=${media.title}"
-            ><button class="sort-title">Titre</button></a
-          >
+      <div class="nav-arrow">
+        <button id="nav-left" class="fas fa-arrow-left"></button>
+        <button id="nav-right" class="fas fa-arrow-right"></button>
+      </div>
+      <div class="lightbox-container">
+        <div class="lightbox-image"></div>
+        <div class="lightbox-text">
+          <span></span>
         </div>
       </div>
+    </div>
+  </main>
 
-      <div id="portfolio"></div>
-      <div class="lightbox" id="lightbox">
-        <span class="lightbox-close"></span>
+  <script src="./scripts/photograph.js" type="module"></script>
+</body>
 
-        <div class="nav-arrow">
-          <button id="nav-left" class="fas fa-arrow-left"></button>
-          <button id="nav-right" class="fas fa-arrow-right"></button>
-        </div>
-        <div class="lightbox-container">
-          <div class="lightbox-image"></div>
-          <div class="lightbox-text">
-            <span></span>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <script src="photograph.js" type="module"></script>
-  </body>
 </html>
