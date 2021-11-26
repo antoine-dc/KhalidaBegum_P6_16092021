@@ -1,4 +1,11 @@
-import { loadData, convertStringToHTML } from "./common.js";
+import {
+  loadData,
+  convertStringToHTML
+} from "./common.js";
+
+import {
+  getMedias
+} from "./media.js"
 
 //DOM elements
 const modalBackground = document.querySelector(".background");
@@ -23,6 +30,32 @@ closeBtn.addEventListener("click", closeModal);
 
 //photographer bio
 
+const data = await loadData().then((data) => {
+  const photographer = data.photographers.find((photographer) => {
+    return photographer.id === urlPhotographerId;
+  });
+  const media = data.media.filter((media) => {
+    return media.photographerId === urlPhotographerId;
+  });
+
+  return {
+    photographer: photographer,
+    medias: media
+  }
+});
+
+console.log(data.medias)
+// 1 : Récupérer la tri voulu
+// 2: ajout un event listener sur les boutons
+// 3 : récupérer le texte du bouton
+// 4 : faire une condition selon le tri
+// 5: faire le sort du tableau data.medias
+console.log("tri")
+// 6a : Vider le contenu du #portfolio
+// 6b : Relancer cette ligne :  document.querySelector("#portfolio").appendChild(getMedias(data.medias));
+
+
+
 const getPhotographerBio = (photographer) => {
   return convertStringToHTML(`
   <div class="profile-text">
@@ -44,120 +77,62 @@ const getPhotographerBio = (photographer) => {
 const getTags = (photographer) => {
   return convertStringToHTML(
     photographer.tags
-      .map((tag) => {
-        return `<span> <li><a href="index.html?tag=${tag}">#${tag}</a></li></span> `;
-      })
-      .join("")
+    .map((tag) => {
+      return `<span> <li><a href="index.html?tag=${tag}">#${tag}</a></li></span> `;
+    })
+    .join("")
   );
 };
 
-const getVideo = (media, index) => {
-  return `  
-  <article class="portfolio-pics">
-   <div>
-   <a href="#">
-     <video controls data-id="${index}">
-       <source
-         src="Sample Photos/${media.photographerId}/${media.video}"
-         type="Video" alt="${media.title}"
-       />
-     </video>
-     </a>
-<div class="portfolio-text" data-id="${index}">
-<a href="photograph.html?title=${media.title}"> <span class="titles">${media.title}</span></a>
-<a href="photograph.html?likes=${media.likes}"> <span class="portfolio-likes">${media.likes} ❤</span> </a> 
-     </div>
-   </div>
- </article>
-`;
-};
-
-const getImage = (media, index) => {
-  return `
-    <article class="portfolio-pics">
-      <div>
-        <a href="#"><img 
-          src="Sample Photos/${media.photographerId}/${media.image}"
-          alt="${media.title}"
-          data-id="${index}"
-        /></a>
-        <div class="portfolio-text" data-id="${index}">
-       <a href="photograph.html?title=${media.title}"> <span class="titles">${media.title}</span></a>
-       <a href="photograph.html?likes=${media.likes}"> <span class="portfolio-likes">${media.likes} ❤</span> </a>  
-        </div> 
-      </div>
-    </article>
-  `;
-};
-
-const getMedia = (media, index) => {
-  if (media.video) {
-    return getVideo(media, index);
-  }
-  return getImage(media, index);
-};
-
-const getMedias = (medias) => {
-  return convertStringToHTML(
-    medias.map((media, index) => getMedia(media, index)).join("")
-  );
-};
 
 // Launch Modal
 
-loadData().then((data) => {
-  const photographer = data.photographers.find((photographer) => {
-    return photographer.id === urlPhotographerId;
-  });
-  const media = data.media.filter((media) => {
-    return media.photographerId === urlPhotographerId;
-  });
 
-  document.title = photographer.name;
-  document
-    .querySelector("#photographer_bio")
-    .appendChild(getPhotographerBio(photographer));
 
-  document
-    .querySelector("#photographer_tags")
-    .appendChild(getTags(photographer));
 
-  document.querySelector("#portfolio").appendChild(getMedias(media));
-  const lightboxPics = document.querySelectorAll(".portfolio-pics");
-  let count = 0;
-  //console.log(lightboxPics);
-  lightboxPics.forEach((img) =>
-    img.addEventListener("click", (e) => {
-      count = e.target.getAttribute("data-id");
 
-      let containerMedia = document.querySelector(".lightbox-image");
 
-      containerMedia.innerHTML = lightboxPics[count].innerHTML;
+// document.title = photographer.name;
+document.title = data.photographer.name;
+document.querySelector("#photographer_bio").appendChild(getPhotographerBio(data.photographer));
+document.querySelector("#photographer_tags").appendChild(getTags(data.photographer));
 
-      lightboxBackground.style.display = "block";
-    })
-  );
+document.querySelector("#portfolio").appendChild(getMedias(data.medias));
+const lightboxPics = document.querySelectorAll(".portfolio-pics");
+let count = 0;
+//console.log(lightboxPics);
+lightboxPics.forEach((img) =>
+  img.addEventListener("click", (e) => {
+    count = e.target.getAttribute("data-id");
 
-  next.addEventListener("click", () => {
-    count = parseInt(count) + 1;
-
-    console.log(count);
-    if (count > lightboxPics.length - 1) {
-      count = 0;
-    }
-    containerMedia.innerHTML = lightboxPics[count].innerHTML;
-  });
-
-  prev.addEventListener("click", () => {
-    count = parseInt(count) - 1;
-    console.log(count);
-    if (count < 0) {
-      count = lightboxPics.length - 1;
-    }
+    let containerMedia = document.querySelector(".lightbox-image");
 
     containerMedia.innerHTML = lightboxPics[count].innerHTML;
-  });
+
+    lightboxBackground.style.display = "block";
+  })
+);
+
+next.addEventListener("click", () => {
+  count = parseInt(count) + 1;
+
+  console.log(count);
+  if (count > lightboxPics.length - 1) {
+    count = 0;
+  }
+  containerMedia.innerHTML = lightboxPics[count].innerHTML;
 });
+
+prev.addEventListener("click", () => {
+  count = parseInt(count) - 1;
+  console.log(count);
+  if (count < 0) {
+    count = lightboxPics.length - 1;
+  }
+
+  containerMedia.innerHTML = lightboxPics[count].innerHTML;
+});
+
 
 // Functions
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
